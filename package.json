@@ -1,0 +1,31 @@
+{
+  "name": "@webfruits/core",
+  "version": "0.1.0",
+  "description": "A TypeScript library for building user interfaces using the real DOM.",
+  "homepage": "https://webfruits.io",
+  "license": "MIT License",
+  "author": {
+    "name": "Matthias Schulz",
+    "email": "matthias.schulz@jash.de",
+    "url": "https://matthiasschulz.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webfruits/core.git"
+  },
+  "main": "dist/UIComponent.js",
+  "types": "dist/UIComponent.d.ts",
+  "scripts": {
+    "build": "rm -rf dist/ && tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.3333"
+  },
+  "keywords": [
+    "frontend",
+    "ui",
+    "user-interface",
+    "library",
+    "typescript"
+  ]
+}
