@@ -5,7 +5,7 @@ To make things easy, webfruits/core provides mainly one class with an easy API t
 
 A `UIComponent` combines the creation of HTMLElements, the styling of those elements and any kind of logic. UIComponents can be combined and extended in any way to create simple to complex reusable custom components.
 
-Here comes a little snippet of how webfruits/core looks on [Reacts HelloMessage](https://reactjs.org) example:  
+Here comes a little snippet of how webfruits/core looks on [Reacts HelloMessage](https://reactjs.org) example:
 ```typescript
 class HelloMessage extends UIComponent {
     constructor(message: string) {
@@ -170,13 +170,13 @@ class StyledComponent extends UIComponent {
 
 ## more webfruits
 
-- **[webfruits/toolbox]()**  
+- **[webfruits/toolbox](https://github.com/webfruits/toolbox)**  
 provides additional features like SVGComponent, GridLayout and a lot of utilities.
 
-- **[webfruits/best-practice]()**  
+- **[webfruits/best-practice](https://github.com/webfruits/best-practice)**  
 our recommondation of how to structure an application using webfruits.
 
-- **[webfruits/webpack-starterkit]()**  
+- **[webfruits/webpack-starterkit](https://github.com/webfruits/webpack-starterkit)**  
 is a basic webpack setup and skeleton for an webfruits application.
 
 
