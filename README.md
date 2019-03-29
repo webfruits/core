@@ -1,4 +1,6 @@
-# webfruits/core &nbsp; [![Language TypeScript](https://img.shields.io/badge/language-TypeScript-green.svg)](https://www.typescriptlang.org) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE) ![GitHub package.json version](https://img.shields.io/github/package-json/v/webfruits/core.svg?color=green&label=master&logo=github) [![npm version](https://img.shields.io/npm/v/@webfruits/core.svg?color=green)](https://www.npmjs.com/package/react) 
+<img src="https://webfruits.io/assets/wf-small-core-logo.svg" alt="wf core logo" height="50px">
+
+# webfruits/core &nbsp; [![Language TypeScript](https://img.shields.io/badge/language-TypeScript-green.svg)](https://www.typescriptlang.org) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE) ![GitHub package.json version](https://img.shields.io/github/package-json/v/webfruits/core.svg?color=green&label=master&logo=github) [![npm version](https://img.shields.io/npm/v/@webfruits/core.svg?color=green)](https://www.npmjs.com/package/@webfruits/core) 
 ... is all about creating highly customized, fast and interactive user interfaces using the real DOM and not a virtual one. It is super slim, modular and has no dependencies. All declarations and coding can be done with TypeScript. There is no need to learn any proprietary template language.
 
 To make things easy, webfruits/core provides mainly one class with an easy API to work with: [`UIComponent`](src/UIComponent.ts). 
