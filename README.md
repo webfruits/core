@@ -41,9 +41,9 @@ The above example outputs following to the DOM:
 ## Benefits
 * **No dependencies.** webfruits/core is a simple, super lightweight and modular ui library written in TypeScript.
 * **No virtual DOM.** Create and access the real DOM. This brings you in full control and best performance.
-* **It's not a framework.** It's a library. So it's up to your needs how to structure your application. But there is a recommondation for a best practice at [webfruits/best-practice]()
+* **It's not a framework.** It's a library. So it's up to your needs how to structure your application. But there is a recommondation for a best practice at [webfruits/best-practice](https://github.com/webfruits/best-practice)
 * **It's vanilla coding.** Just use pure TypeScript to code your UI.
-* **Easy to learn and work with.** Even the source code itself should be understandable within minutes. So you are in full control to fix or extend webfruits/core for your needs (hard to do with React, Angular or Vue)
+* **Easy to learn and work with.** Even the source code itself should be understandable within minutes. So you are in full control to fix or extend webfruits/core for your needs.
 
 ## Installation
 webfruits/core is intended to use with npm and [webpack or similar module-handler](https://stackoverflow.com/questions/19059580/client-on-node-uncaught-referenceerror-require-is-not-defined).  
