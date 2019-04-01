@@ -46,7 +46,7 @@ The above example outputs following to the DOM:
 * **Easy to learn and work with.** Even the source code itself should be understandable within minutes. So you are in full control to fix or extend webfruits/core for your needs.
 
 ## Installation
-webfruits/core is intended to use with npm and [webpack or similar module-handler](https://stackoverflow.com/questions/19059580/client-on-node-uncaught-referenceerror-require-is-not-defined).  
+webfruits/core is intended to use with npm and [webpack or similar module-handler](https://github.com/webfruits/webpack-starterkit).  
 
     npm install @webfruits/core --save
 
