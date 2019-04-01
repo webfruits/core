@@ -1,4 +1,6 @@
-# webfruits/core &nbsp; [![Language TypeScript](https://img.shields.io/badge/language-TypeScript-green.svg)](https://www.typescriptlang.org) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE) ![GitHub package.json version](https://img.shields.io/github/package-json/v/webfruits/core.svg?color=green&label=master&logo=github) [![npm version](https://img.shields.io/npm/v/@webfruits/core.svg?color=green)](https://www.npmjs.com/package/react) 
+<img src="https://webfruits.io/assets/wf-small-core-logo.svg" alt="wf core logo" height="50px">
+
+# webfruits/core &nbsp; [![Language TypeScript](https://img.shields.io/badge/language-TypeScript-green.svg)](https://www.typescriptlang.org) [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE) ![GitHub package.json version](https://img.shields.io/github/package-json/v/webfruits/core.svg?color=green&label=master&logo=github) [![npm version](https://img.shields.io/npm/v/@webfruits/core.svg?color=green)](https://www.npmjs.com/package/@webfruits/core) 
 ... is all about creating highly customized, fast and interactive user interfaces using the real DOM and not a virtual one. It is super slim, modular and has no dependencies. All declarations and coding can be done with TypeScript. There is no need to learn any proprietary template language.
 
 To make things easy, webfruits/core provides mainly one class with an easy API to work with: [`UIComponent`](src/UIComponent.ts). 
@@ -39,18 +41,18 @@ The above example outputs following to the DOM:
 ## Benefits
 * **No dependencies.** webfruits/core is a simple, super lightweight and modular ui library written in TypeScript.
 * **No virtual DOM.** Create and access the real DOM. This brings you in full control and best performance.
-* **It's not a framework.** It's a library. So it's up to your needs how to structure your application. But there is a recommondation for a best practice at [webfruits/best-practice]()
+* **It's not a framework.** It's a library. So it's up to your needs how to structure your application. But there is a recommondation for a best practice at [webfruits/best-practice](https://github.com/webfruits/best-practice)
 * **It's vanilla coding.** Just use pure TypeScript to code your UI.
-* **Easy to learn and work with.** Even the source code itself should be understandable within minutes. So you are in full control to fix or extend webfruits/core for your needs (hard to do with React, Angular or Vue)
+* **Easy to learn and work with.** Even the source code itself should be understandable within minutes. So you are in full control to fix or extend webfruits/core for your needs.
 
 ## Installation
-webfruits/core is intended to use with npm and [webpack or similar module-handler](https://stackoverflow.com/questions/19059580/client-on-node-uncaught-referenceerror-require-is-not-defined).  
+webfruits/core is intended to use with npm and [webpack or similar module-handler](https://github.com/webfruits/webpack-starterkit).  
 
     npm install @webfruits/core --save
 
 
 ## Documentation
-You can find the docs for webfruits/core [here]()
+There is no documantion available at the moment. Meanwhile, please have look at the source code, which should not that hard to understand.
 
 
 ## Usage
