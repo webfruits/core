@@ -28,6 +28,9 @@ var CustomElementsUtils = /** @class */ (function () {
         return this.HTML_TAGS.indexOf(elementName.toLowerCase()) != -1;
     };
     CustomElementsUtils.defineCustomElement = function (elementName) {
+        if (typeof customElements == "undefined") {
+            console.error("CustomElements not supported. Try to use a polyfill like '@webcomponents/custom-elements'");
+        }
         if (elementName.indexOf("-") == -1) {
             console.error("'" + elementName + "' does not contain a hyphen, which is required by CustomElement specifications.");
             return;
@@ -59,7 +62,12 @@ var CustomElementsUtils = /** @class */ (function () {
         if (void 0 === window['Reflect'] || void 0 === window.customElements || window.customElements.hasOwnProperty('polyfillWrapFlushCallback'))
             return;
         var a = HTMLElement;
-        window['HTMLElement'] = function HTMLElement() { return Reflect.construct(a, [], this.constructor); }, HTMLElement.prototype = a.prototype, HTMLElement.prototype.constructor = HTMLElement, Object.setPrototypeOf(HTMLElement, a);
+        window['HTMLElement'] = function HTMLElement() {
+            return Reflect.construct(a, [], this.constructor);
+        };
+        HTMLElement.prototype = a.prototype;
+        HTMLElement.prototype.constructor = HTMLElement;
+        Object.setPrototypeOf(HTMLElement, a);
     };
     /******************************************************************
      * Properties

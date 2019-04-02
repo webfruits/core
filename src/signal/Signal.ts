@@ -10,7 +10,7 @@ export class Signal<T = void> {
      * Properties
      *****************************************************************/
 
-    public _listeners: {callback: (param: T) => void, onlyOnce?: boolean}[] = [];
+    private _listeners: {callback: (param: T) => void, onlyOnce?: boolean}[] = [];
 
     /******************************************************************
      * Constructor
@@ -71,7 +71,7 @@ export class Signal<T = void> {
      * Private Methodes
      *****************************************************************/
 
-    private callbackAlreadyExists(callbackToAdd: (param: T) => void) {
+    private callbackAlreadyExists(callbackToAdd: (param: T) => void): boolean {
         let doesExist = false;
         this._listeners.forEach((listener) => {
             if (listener.callback == callbackToAdd) {
