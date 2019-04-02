@@ -29,9 +29,8 @@ var UIComponent = /** @class */ (function () {
         if (!this._elementName)
             this._elementName = "ui-component";
         this.initView();
-        this.initNativeEventsController();
+        this.initNativeEventsControllers();
         this.initStyleController();
-        this.initListeners();
         this.initDOMOberver();
     }
     Object.defineProperty(UIComponent.prototype, "view", {
@@ -90,14 +89,12 @@ var UIComponent = /** @class */ (function () {
         this._nativeViewEvents.removeAllListeners();
     };
     UIComponent.prototype.destroy = function () {
-        if (this._nativeViewEvents) {
-            this._nativeViewEvents.destroy();
-        }
-        this._nativeWindowEvents.removeAllListeners();
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
         this.onStyleAppliedSignal.removeAll();
         this.onStageResizeSignal.removeAll();
+        this._nativeViewEvents.destroy();
+        this._nativeWindowEvents.destroy();
         this._domObserver.destroy();
         this._view.remove();
         this._view = null;
@@ -153,8 +150,11 @@ var UIComponent = /** @class */ (function () {
             this._view = this._elementName;
         }
     };
-    UIComponent.prototype.initNativeEventsController = function () {
+    UIComponent.prototype.initNativeEventsControllers = function () {
+        var _this = this;
         this._nativeViewEvents = new NativeEventsController_1.NativeEventsController(this._view);
+        this._nativeWindowEvents = new NativeEventsController_1.NativeEventsController(window);
+        this._nativeWindowEvents.addListener("resize", function () { return _this.onStageResized(); });
     };
     UIComponent.prototype.initStyleController = function () {
         this._styleController = new NativeStylesController_1.NativeStylesController(this._view);
@@ -163,11 +163,6 @@ var UIComponent = /** @class */ (function () {
                 display: "block"
             });
         }
-    };
-    UIComponent.prototype.initListeners = function () {
-        var _this = this;
-        this._nativeWindowEvents = new NativeEventsController_1.NativeEventsController(window);
-        this._nativeWindowEvents.addListener("resize", function () { return _this.onStageResized(); });
     };
     UIComponent.prototype.initDOMOberver = function () {
         var _this = this;
