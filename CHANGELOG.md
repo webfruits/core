@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.5
+* Optimized: some minor optimizations in UIComponent
+
 ## v0.1.4
 * Fixed: if `fontWeight` is a number, it will not apply 
 
