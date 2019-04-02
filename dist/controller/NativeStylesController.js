@@ -46,6 +46,9 @@ var NativeStylesController = /** @class */ (function () {
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
                     this._element.style[propertyName] = "#" + value.toString(16);
                 }
+                else if (propertyName.toLowerCase().indexOf("fontweight") != -1) {
+                    this._element.style[propertyName] = value.toString();
+                }
                 else {
                     this._element.style[propertyName] = value + "px";
                 }
