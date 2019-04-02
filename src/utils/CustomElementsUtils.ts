@@ -22,6 +22,9 @@ export class CustomElementsUtils {
     }
 
     static defineCustomElement(elementName: string) {
+        if (typeof customElements == "undefined") {
+            console.error("CustomElements not supported. Try to use a polyfill like '@webcomponents/custom-elements'");
+        }
         if (elementName.indexOf("-") == -1) {
             console.error("'" + elementName + "' does not contain a hyphen, which is required by CustomElement specifications.");
             return;
@@ -48,7 +51,12 @@ export class CustomElementsUtils {
         this._es5CustomElementsAdapterInitizialied = true;
         if (void 0 === window['Reflect'] || void 0 === window.customElements || window.customElements.hasOwnProperty('polyfillWrapFlushCallback')) return;
         const a = HTMLElement;
-        window['HTMLElement'] = function HTMLElement () {return Reflect.construct(a, [], this.constructor)}, HTMLElement.prototype = a.prototype, HTMLElement.prototype.constructor = HTMLElement, Object.setPrototypeOf(HTMLElement, a)
+        window['HTMLElement'] = function HTMLElement() {
+            return Reflect.construct(a, [], this.constructor)
+        };
+        HTMLElement.prototype = a.prototype;
+        HTMLElement.prototype.constructor = HTMLElement;
+        Object.setPrototypeOf(HTMLElement, a)
     }
 
     /******************************************************************
