@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.6
+* Added: check in `NativeStylesController` for pure number to string properties 
+
 ## v0.1.5
 * Optimized: some minor optimizations in UIComponent
 
