@@ -9,6 +9,7 @@ export declare class NativeStylesController {
      * Properties
      *****************************************************************/
     static SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED: boolean;
+    private static readonly PURE_NUMBER_TO_STRING_PROPERTIES;
     private static readonly IGNORED_PROPERTIES_FOR_INLINE;
     private static readonly DEFAULT_TRANSFORM_PROPERTY_VALUES;
     private _transformProperties;
@@ -30,4 +31,5 @@ export declare class NativeStylesController {
     private isTransformProperty;
     private hasDefaultTransform;
     private warnIfStylesWillBeIgnored;
+    private isPropertyNameAPureNumber;
 }

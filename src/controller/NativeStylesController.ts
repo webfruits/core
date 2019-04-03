@@ -12,6 +12,11 @@ export class NativeStylesController {
 
     public static SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED = true;
 
+    private static readonly PURE_NUMBER_TO_STRING_PROPERTIES = [
+        "opacity",
+        "fontweight"
+    ];
+
     private static readonly IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
         "y",
@@ -81,7 +86,7 @@ export class NativeStylesController {
             case "number":
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
                     this._element.style[propertyName] = "#" + (value as number).toString(16);
-                } else if (propertyName.toLowerCase().indexOf("fontweight") != -1) {
+                } else if (this.isPropertyNameAPureNumber(propertyName)) {
                     this._element.style[propertyName] = value.toString();
                 } else {
                     this._element.style[propertyName] = value + "px";
@@ -182,6 +187,16 @@ export class NativeStylesController {
         if (NativeStylesController.IGNORED_PROPERTIES_FOR_INLINE.indexOf(propertyName) != -1 && this._element.style.display == "inline") {
             console.warn("WARNING: display style is set to 'inline'. '" + propertyName + "=" + value + "' will be ignored for: ", this._element);
         }
+    }
+
+    private isPropertyNameAPureNumber(propertyName: string): boolean {
+        let isPureNumber = false;
+        NativeStylesController.PURE_NUMBER_TO_STRING_PROPERTIES.forEach((pureNumberToStringPropertyName: string) => {
+            if (pureNumberToStringPropertyName.toLowerCase() == propertyName.toLowerCase()) {
+                isPureNumber = true;
+            }
+        });
+        return isPureNumber;
     }
 
     /******************************************************************
