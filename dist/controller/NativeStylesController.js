@@ -73,8 +73,11 @@ var NativeStylesController = /** @class */ (function () {
         var sY = this.parseTransformProperty("scaleY");
         var r = this.parseTransformProperty("rotate", "deg");
         var composedValue = "";
-        if (this.hasTransformPropertyAValue("x") || this.hasTransformPropertyAValue("x")) {
-            composedValue += "translate(" + x + ", " + y + ")";
+        if (this.hasTransformPropertyAValue("x")) {
+            composedValue += "translateX(" + x + ")";
+        }
+        if (this.hasTransformPropertyAValue("y")) {
+            composedValue += "translateY(" + y + ")";
         }
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += " rotate(" + r + ")";

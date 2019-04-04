@@ -56,7 +56,6 @@ export class NativeStylesController {
      *****************************************************************/
 
     constructor(private _element: HTMLElement) {
-
     }
 
     /******************************************************************
@@ -113,8 +112,11 @@ export class NativeStylesController {
         let sY = this.parseTransformProperty("scaleY");
         let r = this.parseTransformProperty("rotate", "deg");
         let composedValue = "";
-        if (this.hasTransformPropertyAValue("x") || this.hasTransformPropertyAValue("x")) {
-            composedValue += `translate(${x}, ${y})`;
+        if (this.hasTransformPropertyAValue("x")) {
+            composedValue += `translateX(${x})`;
+        }
+        if (this.hasTransformPropertyAValue("y")) {
+            composedValue += `translateY(${y})`;
         }
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += ` rotate(${r})`
@@ -202,5 +204,7 @@ export class NativeStylesController {
     /******************************************************************
      * Events
      *****************************************************************/
+
+    // no events
 
 }
