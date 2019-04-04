@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.7
+* Fixed: propertyName `y` not applied in `NativeStylesController`
+
 ## v0.1.6
 * Added: check in `NativeStylesController` for pure number to string properties 
 
