@@ -47,9 +47,8 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
      * Private Methodes
      *****************************************************************/
     private initView;
-    initNativeEventsController(): any;
+    private initNativeEventsControllers;
     private initStyleController;
-    private initListeners;
     private initDOMOberver;
     /******************************************************************
      * Events

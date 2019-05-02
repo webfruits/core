@@ -39,9 +39,8 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     constructor(protected _elementName: string | HTMLElement = null) {
         if (!this._elementName) this._elementName = "ui-component";
         this.initView();
-        this.initNativeEventsController();
+        this.initNativeEventsControllers();
         this.initStyleController();
-        this.initListeners();
         this.initDOMOberver();
     }
 
@@ -92,14 +91,12 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     }
 
     public destroy() {
-        if (this._nativeViewEvents) {
-            this._nativeViewEvents.destroy();
-        }
-        this._nativeWindowEvents.removeAllListeners();
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
         this.onStyleAppliedSignal.removeAll();
         this.onStageResizeSignal.removeAll();
+        this._nativeViewEvents.destroy();
+        this._nativeWindowEvents.destroy();
         this._domObserver.destroy();
         this._view.remove();
         this._view = null;
@@ -162,8 +159,10 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    public initNativeEventsController(): any {
+    private initNativeEventsControllers(): any {
         this._nativeViewEvents = new NativeEventsController(this._view);
+        this._nativeWindowEvents = new NativeEventsController(window);
+        this._nativeWindowEvents.addListener("resize", () => this.onStageResized());
     }
 
     private initStyleController() {
@@ -173,11 +172,6 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
                 display: "block"
             })
         }
-    }
-
-    private initListeners() {
-        this._nativeWindowEvents = new NativeEventsController(window);
-        this._nativeWindowEvents.addListener("resize", () => this.onStageResized());
     }
 
     private initDOMOberver() {

@@ -52,7 +52,7 @@ webfruits/core is intended to use with npm and [webpack or similar module-handle
 
 
 ## Documentation
-There is no documantion available at the moment. Meanwhile, please have look at the source code, which should not that hard to understand.
+There is no documention available at the moment. Meanwhile, please have look at the source code, which should not that hard to understand.
 
 
 ## Usage

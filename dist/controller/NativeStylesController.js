@@ -46,6 +46,9 @@ var NativeStylesController = /** @class */ (function () {
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
                     this._element.style[propertyName] = "#" + value.toString(16);
                 }
+                else if (this.isPropertyNameAPureNumber(propertyName)) {
+                    this._element.style[propertyName] = value.toString();
+                }
                 else {
                     this._element.style[propertyName] = value + "px";
                 }
@@ -70,8 +73,11 @@ var NativeStylesController = /** @class */ (function () {
         var sY = this.parseTransformProperty("scaleY");
         var r = this.parseTransformProperty("rotate", "deg");
         var composedValue = "";
-        if (this.hasTransformPropertyAValue("x") || this.hasTransformPropertyAValue("x")) {
-            composedValue += "translate(" + x + ", " + y + ")";
+        if (this.hasTransformPropertyAValue("x")) {
+            composedValue += "translateX(" + x + ")";
+        }
+        if (this.hasTransformPropertyAValue("y")) {
+            composedValue += "translateY(" + y + ")";
         }
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += " rotate(" + r + ")";
@@ -144,10 +150,23 @@ var NativeStylesController = /** @class */ (function () {
             console.warn("WARNING: display style is set to 'inline'. '" + propertyName + "=" + value + "' will be ignored for: ", this._element);
         }
     };
+    NativeStylesController.prototype.isPropertyNameAPureNumber = function (propertyName) {
+        var isPureNumber = false;
+        NativeStylesController.PURE_NUMBER_TO_STRING_PROPERTIES.forEach(function (pureNumberToStringPropertyName) {
+            if (pureNumberToStringPropertyName.toLowerCase() == propertyName.toLowerCase()) {
+                isPureNumber = true;
+            }
+        });
+        return isPureNumber;
+    };
     /******************************************************************
      * Properties
      *****************************************************************/
     NativeStylesController.SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED = true;
+    NativeStylesController.PURE_NUMBER_TO_STRING_PROPERTIES = [
+        "opacity",
+        "fontweight"
+    ];
     NativeStylesController.IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
         "y",

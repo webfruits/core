@@ -12,6 +12,11 @@ export class NativeStylesController {
 
     public static SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED = true;
 
+    private static readonly PURE_NUMBER_TO_STRING_PROPERTIES = [
+        "opacity",
+        "fontweight"
+    ];
+
     private static readonly IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
         "y",
@@ -51,7 +56,6 @@ export class NativeStylesController {
      *****************************************************************/
 
     constructor(private _element: HTMLElement) {
-
     }
 
     /******************************************************************
@@ -81,6 +85,8 @@ export class NativeStylesController {
             case "number":
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
                     this._element.style[propertyName] = "#" + (value as number).toString(16);
+                } else if (this.isPropertyNameAPureNumber(propertyName)) {
+                    this._element.style[propertyName] = value.toString();
                 } else {
                     this._element.style[propertyName] = value + "px";
                 }
@@ -106,8 +112,11 @@ export class NativeStylesController {
         let sY = this.parseTransformProperty("scaleY");
         let r = this.parseTransformProperty("rotate", "deg");
         let composedValue = "";
-        if (this.hasTransformPropertyAValue("x") || this.hasTransformPropertyAValue("x")) {
-            composedValue += `translate(${x}, ${y})`;
+        if (this.hasTransformPropertyAValue("x")) {
+            composedValue += `translateX(${x})`;
+        }
+        if (this.hasTransformPropertyAValue("y")) {
+            composedValue += `translateY(${y})`;
         }
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += ` rotate(${r})`
@@ -182,8 +191,20 @@ export class NativeStylesController {
         }
     }
 
+    private isPropertyNameAPureNumber(propertyName: string): boolean {
+        let isPureNumber = false;
+        NativeStylesController.PURE_NUMBER_TO_STRING_PROPERTIES.forEach((pureNumberToStringPropertyName: string) => {
+            if (pureNumberToStringPropertyName.toLowerCase() == propertyName.toLowerCase()) {
+                isPureNumber = true;
+            }
+        });
+        return isPureNumber;
+    }
+
     /******************************************************************
      * Events
      *****************************************************************/
+
+    // no events
 
 }

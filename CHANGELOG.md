@@ -2,6 +2,18 @@
 
 #Changelog
 
+## v0.1.7
+* Fixed: propertyName `y` not applied in `NativeStylesController`
+
+## v0.1.6
+* Added: check in `NativeStylesController` for pure number to string properties 
+
+## v0.1.5
+* Optimized: some minor optimizations in UIComponent
+
+## v0.1.4
+* Fixed: if `fontWeight` is a number, it will not apply 
+
 ## v0.1.3
 * Added: Warning when CustomElements are not supported
 * Optimized: `Signals._listener` now is private 
