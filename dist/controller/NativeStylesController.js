@@ -101,6 +101,9 @@ var NativeStylesController = /** @class */ (function () {
             case "undefined":
             case "object":
             default:
+                if (propertyName == "scaleX" || propertyName == "scaleY") {
+                    return 1;
+                }
                 return 0;
         }
     };
