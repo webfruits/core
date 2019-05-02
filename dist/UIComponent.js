@@ -90,9 +90,11 @@ var UIComponent = /** @class */ (function () {
     };
     UIComponent.prototype.destroy = function (recursivly) {
         if (recursivly === void 0) { recursivly = true; }
-        this.children.forEach(function (child) {
-            child.destroy();
-        });
+        if (recursivly) {
+            this.children.forEach(function (child) {
+                child.destroy();
+            });
+        }
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
         this.onStyleAppliedSignal.removeAll();

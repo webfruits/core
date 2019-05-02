@@ -91,9 +91,11 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     }
 
     public destroy(recursivly: boolean = true) {
-        this.children.forEach((child: UIComponent) => {
-           child.destroy();
-        });
+        if (recursivly) {
+            this.children.forEach((child: UIComponent) => {
+                child.destroy();
+            });
+        }
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
         this.onStyleAppliedSignal.removeAll();
