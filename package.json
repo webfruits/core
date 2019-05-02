@@ -17,6 +17,7 @@
   "types": "dist/UIComponent.d.ts",
   "scripts": {
     "build": "rm -rf dist/ && tsc",
+    "build:watch": "rm -rf dist/ && tsc --watch",
     "publish": "npm run build && npm publish --access=public"
   },
   "devDependencies": {
