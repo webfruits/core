@@ -82,8 +82,11 @@ var NativeStylesController = /** @class */ (function () {
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += " rotate(" + r + ")";
         }
-        if (this.hasTransformPropertyAValue("scaleX") || this.hasTransformPropertyAValue("scaleY")) {
-            composedValue += " scale(" + sX + ", " + sY + ")";
+        if (this.hasTransformPropertyAValue("scaleX")) {
+            composedValue += " scaleX(" + sX + ")";
+        }
+        if (this.hasTransformPropertyAValue("scaleY")) {
+            composedValue += " scaleY(" + sY + ")";
         }
         this._element.style.setProperty("transform", composedValue);
     };
@@ -98,6 +101,9 @@ var NativeStylesController = /** @class */ (function () {
             case "undefined":
             case "object":
             default:
+                if (propertyName == "scaleX" || propertyName == "scaleY") {
+                    return 1;
+                }
                 return 0;
         }
     };

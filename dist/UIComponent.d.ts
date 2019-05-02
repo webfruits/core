@@ -36,7 +36,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     addNativeListener(eventType: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): number;
     removeNativeListener(listenerID: number): void;
     removeAllNativeListeners(): void;
-    destroy(): void;
+    destroy(recursivly?: boolean): void;
     applyStyle(cssStyle: CSSStyleDeclaration | any): void;
     addChild(child: UIComponent): void;
     addChildAt(child: UIComponent, at: number): void;

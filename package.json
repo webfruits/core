@@ -1,6 +1,6 @@
 {
   "name": "@webfruits/core",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A TypeScript library for building user interfaces using the real DOM.",
   "homepage": "https://webfruits.io",
   "license": "MIT License",
@@ -17,6 +17,7 @@
   "types": "dist/UIComponent.d.ts",
   "scripts": {
     "build": "rm -rf dist/ && tsc",
+    "build:watch": "rm -rf dist/ && tsc --watch",
     "publish": "npm run build && npm publish --access=public"
   },
   "devDependencies": {

@@ -90,7 +90,12 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         this._nativeViewEvents.removeAllListeners();
     }
 
-    public destroy() {
+    public destroy(recursivly: boolean = true) {
+        if (recursivly) {
+            this.children.forEach((child: UIComponent) => {
+                child.destroy();
+            });
+        }
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
         this.onStyleAppliedSignal.removeAll();

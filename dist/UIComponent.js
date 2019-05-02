@@ -88,7 +88,13 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.removeAllNativeListeners = function () {
         this._nativeViewEvents.removeAllListeners();
     };
-    UIComponent.prototype.destroy = function () {
+    UIComponent.prototype.destroy = function (recursivly) {
+        if (recursivly === void 0) { recursivly = true; }
+        if (recursivly) {
+            this.children.forEach(function (child) {
+                child.destroy();
+            });
+        }
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
         this.onStyleAppliedSignal.removeAll();
