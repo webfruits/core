@@ -2,6 +2,10 @@
 
 #Changelog
 
+## v0.1.8
+* Added: UIComponent.destroy() recursivly by default
+* Fixed: scaleX/scaleY are buggy when using seperatly
+
 ## v0.1.7
 * Fixed: propertyName `y` not applied in `NativeStylesController`
 
