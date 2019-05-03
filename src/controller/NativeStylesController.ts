@@ -20,10 +20,15 @@ export class NativeStylesController {
     private static readonly IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
         "y",
+        "z",
         "scale",
         "scaleX",
         "scaleY",
+        "scaleZ",
         "rotate",
+        "rotateX",
+        "rotateY",
+        "rotateZ",
         "width",
         "height",
         "margin",
@@ -36,19 +41,29 @@ export class NativeStylesController {
     private static readonly DEFAULT_TRANSFORM_PROPERTY_VALUES = {
         x: 0,
         y: 0,
+        z: 0,
         scale: 1,
         scaleX: 1,
         scaleY: 1,
-        rotate: 0
+        scaleZ: 1,
+        rotate: 0,
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0
     };
 
     private _transformProperties = {
         x: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.x,
         y: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.y,
+        z: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.z,
+        rotate: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotate,
+        rotateX: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotateX,
+        rotateY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotateY,
+        rotateZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotateZ,
         scale: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scale,
         scaleX: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleX,
         scaleY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleY,
-        rotate: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotate
+        scaleZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleZ,
     };
 
     /******************************************************************
@@ -108,9 +123,14 @@ export class NativeStylesController {
         }
         let x = this.parseTransformProperty("x", "px");
         let y = this.parseTransformProperty("y", "px");
+        let z = this.parseTransformProperty("z", "px");
         let sX = this.parseTransformProperty("scaleX");
         let sY = this.parseTransformProperty("scaleY");
+        let sZ = this.parseTransformProperty("scaleZ");
         let r = this.parseTransformProperty("rotate", "deg");
+        let rX = this.parseTransformProperty("rotateX", "deg");
+        let rY = this.parseTransformProperty("rotateY", "deg");
+        let rZ = this.parseTransformProperty("rotateZ", "deg");
         let composedValue = "";
         if (this.hasTransformPropertyAValue("x")) {
             composedValue += `translateX(${x})`;
@@ -118,14 +138,29 @@ export class NativeStylesController {
         if (this.hasTransformPropertyAValue("y")) {
             composedValue += `translateY(${y})`;
         }
+        if (this.hasTransformPropertyAValue("z")) {
+            composedValue += `translateZ(${z})`;
+        }
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += ` rotate(${r})`
+        }
+        if (this.hasTransformPropertyAValue("rotateX")) {
+            composedValue += ` rotateX(${rX})`
+        }
+        if (this.hasTransformPropertyAValue("rotateY")) {
+            composedValue += ` rotateY(${rY})`
+        }
+        if (this.hasTransformPropertyAValue("rotateZ")) {
+            composedValue += ` rotateZ(${rZ})`
         }
         if (this.hasTransformPropertyAValue("scaleX")) {
             composedValue += ` scaleX(${sX})`;
         }
         if (this.hasTransformPropertyAValue("scaleY")) {
             composedValue += ` scaleY(${sY})`;
+        }
+        if (this.hasTransformPropertyAValue("scaleZ")) {
+            composedValue += ` scaleZ(${sZ})`;
         }
         this._element.style.setProperty("transform", composedValue);
     }
