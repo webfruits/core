@@ -95,13 +95,13 @@ var NativeStylesController = /** @class */ (function () {
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += " rotate(" + r + ")";
         }
-        if (this.hasTransformPropertyAValue("rX")) {
+        if (this.hasTransformPropertyAValue("rotateX")) {
             composedValue += " rotateX(" + rX + ")";
         }
-        if (this.hasTransformPropertyAValue("rY")) {
+        if (this.hasTransformPropertyAValue("rotateY")) {
             composedValue += " rotateY(" + rY + ")";
         }
-        if (this.hasTransformPropertyAValue("rZ")) {
+        if (this.hasTransformPropertyAValue("rotateZ")) {
             composedValue += " rotateZ(" + rZ + ")";
         }
         if (this.hasTransformPropertyAValue("scaleX")) {
