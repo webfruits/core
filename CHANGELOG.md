@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.9
+* Added: 3D transform properties to `NativeStyleContoller`
+
 ## v0.1.8
 * Added: UIComponent.destroy() recursivly by default
 * Fixed: scaleX/scaleY are buggy when using seperatly
