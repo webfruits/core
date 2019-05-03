@@ -14,10 +14,15 @@ var NativeStylesController = /** @class */ (function () {
         this._transformProperties = {
             x: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.x,
             y: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.y,
+            z: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.z,
+            rotate: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotate,
+            rotateX: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotateX,
+            rotateY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotateY,
+            rotateZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotateZ,
             scale: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scale,
             scaleX: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleX,
             scaleY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleY,
-            rotate: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.rotate
+            scaleZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleZ,
         };
     }
     /******************************************************************
@@ -69,9 +74,14 @@ var NativeStylesController = /** @class */ (function () {
         }
         var x = this.parseTransformProperty("x", "px");
         var y = this.parseTransformProperty("y", "px");
+        var z = this.parseTransformProperty("z", "px");
         var sX = this.parseTransformProperty("scaleX");
         var sY = this.parseTransformProperty("scaleY");
+        var sZ = this.parseTransformProperty("scaleZ");
         var r = this.parseTransformProperty("rotate", "deg");
+        var rX = this.parseTransformProperty("rotateX", "deg");
+        var rY = this.parseTransformProperty("rotateY", "deg");
+        var rZ = this.parseTransformProperty("rotateZ", "deg");
         var composedValue = "";
         if (this.hasTransformPropertyAValue("x")) {
             composedValue += "translateX(" + x + ")";
@@ -79,14 +89,29 @@ var NativeStylesController = /** @class */ (function () {
         if (this.hasTransformPropertyAValue("y")) {
             composedValue += "translateY(" + y + ")";
         }
+        if (this.hasTransformPropertyAValue("z")) {
+            composedValue += "translateZ(" + z + ")";
+        }
         if (this.hasTransformPropertyAValue("rotate")) {
             composedValue += " rotate(" + r + ")";
+        }
+        if (this.hasTransformPropertyAValue("rX")) {
+            composedValue += " rotateX(" + rX + ")";
+        }
+        if (this.hasTransformPropertyAValue("rY")) {
+            composedValue += " rotateY(" + rY + ")";
+        }
+        if (this.hasTransformPropertyAValue("rZ")) {
+            composedValue += " rotateZ(" + rZ + ")";
         }
         if (this.hasTransformPropertyAValue("scaleX")) {
             composedValue += " scaleX(" + sX + ")";
         }
         if (this.hasTransformPropertyAValue("scaleY")) {
             composedValue += " scaleY(" + sY + ")";
+        }
+        if (this.hasTransformPropertyAValue("scaleZ")) {
+            composedValue += " scaleZ(" + sZ + ")";
         }
         this._element.style.setProperty("transform", composedValue);
     };
@@ -176,10 +201,15 @@ var NativeStylesController = /** @class */ (function () {
     NativeStylesController.IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
         "y",
+        "z",
         "scale",
         "scaleX",
         "scaleY",
+        "scaleZ",
         "rotate",
+        "rotateX",
+        "rotateY",
+        "rotateZ",
         "width",
         "height",
         "margin",
@@ -191,10 +221,15 @@ var NativeStylesController = /** @class */ (function () {
     NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES = {
         x: 0,
         y: 0,
+        z: 0,
         scale: 1,
         scaleX: 1,
         scaleY: 1,
-        rotate: 0
+        scaleZ: 1,
+        rotate: 0,
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0
     };
     return NativeStylesController;
 }());
