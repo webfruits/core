@@ -42,6 +42,116 @@ var NativeStylesController = /** @class */ (function () {
             }
         }
     };
+    Object.defineProperty(NativeStylesController.prototype, "x", {
+        get: function () {
+            return this._transformProperties.x;
+        },
+        set: function (value) {
+            this.applyTransformProperties("x", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "y", {
+        get: function () {
+            return this._transformProperties.y;
+        },
+        set: function (value) {
+            this.applyTransformProperties("y", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "z", {
+        get: function () {
+            return this._transformProperties.z;
+        },
+        set: function (value) {
+            this.applyTransformProperties("z", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "rotate", {
+        get: function () {
+            return this._transformProperties.rotate;
+        },
+        set: function (value) {
+            this.applyTransformProperties("rotate", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "rotateX", {
+        get: function () {
+            return this._transformProperties.rotateX;
+        },
+        set: function (value) {
+            this.applyTransformProperties("rotateX", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "rotateY", {
+        get: function () {
+            return this._transformProperties.rotateY;
+        },
+        set: function (value) {
+            this.applyTransformProperties("rotateY", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "rotateZ", {
+        get: function () {
+            return this._transformProperties.rotateZ;
+        },
+        set: function (value) {
+            this.applyTransformProperties("rotateZ", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "scale", {
+        get: function () {
+            return this._transformProperties.scale;
+        },
+        set: function (value) {
+            this.applyTransformProperties("scale", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "scaleX", {
+        get: function () {
+            return this._transformProperties.scaleX;
+        },
+        set: function (value) {
+            this.applyTransformProperties("scaleX", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "scaleY", {
+        get: function () {
+            return this._transformProperties.scaleY;
+        },
+        set: function (value) {
+            this.applyTransformProperties("scaleY", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "scaleZ", {
+        get: function () {
+            return this._transformProperties.scaleZ;
+        },
+        set: function (value) {
+            this.applyTransformProperties("scaleZ", value);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /******************************************************************
      * Private Methodes
      *****************************************************************/
