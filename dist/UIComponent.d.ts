@@ -1,3 +1,4 @@
+import { NativeStylesController } from "./controller/NativeStylesController";
 import { Signal } from "./signal/Signal";
 /******************************************************************
  * UIComponent
@@ -30,6 +31,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
      * Public Methodes
      *****************************************************************/
     readonly view: T;
+    readonly transform: NativeStylesController;
     readonly children: UIComponent[];
     readonly isStaged: boolean;
     interactive: boolean;

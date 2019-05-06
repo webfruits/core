@@ -91,6 +91,94 @@ export class NativeStylesController {
         }
     }
 
+    get x(): number {
+        return this._transformProperties.x;
+    }
+
+    set x(value: number) {
+        this.applyTransformProperties("x", value);
+    }
+
+    get y(): number {
+        return this._transformProperties.y;
+    }
+
+    set y(value: number) {
+        this.applyTransformProperties("y", value);
+    }
+
+    get z(): number {
+        return this._transformProperties.z;
+    }
+
+    set z(value: number) {
+        this.applyTransformProperties("z", value);
+    }
+
+    get rotate(): number {
+        return this._transformProperties.rotate;
+    }
+
+    set rotate(value: number) {
+        this.applyTransformProperties("rotate", value);
+    }
+
+    get rotateX(): number {
+        return this._transformProperties.rotateX;
+    }
+
+    set rotateX(value: number) {
+        this.applyTransformProperties("rotateX", value);
+    }
+
+    get rotateY(): number {
+        return this._transformProperties.rotateY;
+    }
+
+    set rotateY(value: number) {
+        this.applyTransformProperties("rotateY", value);
+    }
+
+    get rotateZ(): number {
+        return this._transformProperties.rotateZ;
+    }
+
+    set rotateZ(value: number) {
+        this.applyTransformProperties("rotateZ", value);
+    }
+
+    get scale(): number {
+        return this._transformProperties.scale;
+    }
+
+    set scale(value: number) {
+        this.applyTransformProperties("scale", value);
+    }
+
+    get scaleX(): number {
+        return this._transformProperties.scaleX;
+    }
+
+    set scaleX(value: number) {
+        this.applyTransformProperties("scaleX", value);
+    }
+
+    get scaleY(): number {
+        return this._transformProperties.scaleY;
+    }
+
+    set scaleY(value: number) {
+        this.applyTransformProperties("scaleY", value);
+    }
+
+    get scaleZ(): number {
+        return this._transformProperties.scaleZ;
+    }
+
+    set scaleZ(value: number) {
+        this.applyTransformProperties("scaleZ", value);
+    }
+
     /******************************************************************
      * Private Methodes
      *****************************************************************/

@@ -52,6 +52,10 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         return this._view;
     }
 
+    get transform(): NativeStylesController {
+        return this._styleController;
+    }
+
     get children(): UIComponent[] {
         return this._children;
     }

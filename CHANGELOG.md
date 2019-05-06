@@ -2,6 +2,10 @@
 
 #Changelog
 
+## v0.1.10
+* Added: 'transform' getter to `UIComponent` to access transform properties
+* Added: transform properties getters/setters to `NativeStyleContoller`
+
 ## v0.1.9
 * Added: 3D transform properties to `NativeStyleContoller`
 

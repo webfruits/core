@@ -21,6 +21,17 @@ export declare class NativeStylesController {
      * Public Methodes
      *****************************************************************/
     applyStyle(cssStyle: CSSStyleDeclaration | any): void;
+    x: number;
+    y: number;
+    z: number;
+    rotate: number;
+    rotateX: number;
+    rotateY: number;
+    rotateZ: number;
+    scale: number;
+    scaleX: number;
+    scaleY: number;
+    scaleZ: number;
     /******************************************************************
      * Private Methodes
      *****************************************************************/

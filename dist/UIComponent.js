@@ -43,6 +43,13 @@ var UIComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(UIComponent.prototype, "transform", {
+        get: function () {
+            return this._styleController;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(UIComponent.prototype, "children", {
         get: function () {
             return this._children;
