@@ -14,7 +14,8 @@ export class NativeStylesController {
 
     private static readonly PURE_NUMBER_TO_STRING_PROPERTIES = [
         "opacity",
-        "fontweight"
+        "fontweight",
+        "zIndex"
     ];
 
     private static readonly IGNORED_PROPERTIES_FOR_INLINE = [
