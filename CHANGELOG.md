@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.11
+* Fixed: propertyName `zIndex` not applied in `NativeStylesController`
+
 ## v0.1.10
 * Added: 'transform' getter to `UIComponent` to access transform properties
 * Added: transform properties getters/setters to `NativeStyleContoller`

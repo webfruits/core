@@ -306,7 +306,8 @@ var NativeStylesController = /** @class */ (function () {
     NativeStylesController.SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED = true;
     NativeStylesController.PURE_NUMBER_TO_STRING_PROPERTIES = [
         "opacity",
-        "fontweight"
+        "fontweight",
+        "zIndex"
     ];
     NativeStylesController.IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
