@@ -109,8 +109,10 @@ var UIComponent = /** @class */ (function () {
         this._nativeViewEvents.destroy();
         this._nativeWindowEvents.destroy();
         this._domObserver.destroy();
-        this._view.remove();
-        this._view = null;
+        if (this.view) {
+            this._view.remove();
+            this._view = null;
+        }
     };
     UIComponent.prototype.applyStyle = function (cssStyle) {
         this._styleController.applyStyle(cssStyle);
@@ -129,13 +131,18 @@ var UIComponent = /** @class */ (function () {
         this._children.splice(at, 0, child);
         this._view.insertBefore(child.view, this.view.childNodes[at]);
     };
-    UIComponent.prototype.removeChild = function (child) {
+    UIComponent.prototype.removeChild = function (child, destroy, destroyRecursivly) {
+        if (destroy === void 0) { destroy = false; }
+        if (destroyRecursivly === void 0) { destroyRecursivly = true; }
         var childIndex = this._children.indexOf(child);
         if (childIndex != -1) {
             this._children.splice(childIndex, 1);
         }
-        if (child.view.parentElement) {
+        if (child.view && child.view.parentElement) {
             child.view.parentElement.removeChild(child.view);
+        }
+        if (destroy) {
+            child.destroy(destroyRecursivly);
         }
     };
     UIComponent.prototype.removeAllChildren = function () {
