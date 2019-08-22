@@ -146,9 +146,11 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    public removeAllChildren() {
-        this._view.innerHTML = null;
-        this._children = [];
+    public removeAllChildren(destroy: boolean = false, destroyRecursivly: boolean = true) {
+        while (this.children.length > 0) {
+            let child = this.children[this.children.length - 1];
+            this.removeChild(child, destroy, destroyRecursivly);
+        }
     }
 
     public updateStyles() {

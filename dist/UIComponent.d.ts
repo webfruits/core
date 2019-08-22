@@ -43,7 +43,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     addChild(child: UIComponent): void;
     addChildAt(child: UIComponent, at: number): void;
     removeChild(child: UIComponent, destroy?: boolean, destroyRecursivly?: boolean): void;
-    removeAllChildren(): void;
+    removeAllChildren(destroy?: boolean, destroyRecursivly?: boolean): void;
     updateStyles(): void;
     /******************************************************************
      * Private Methodes

@@ -145,9 +145,13 @@ var UIComponent = /** @class */ (function () {
             child.destroy(destroyRecursivly);
         }
     };
-    UIComponent.prototype.removeAllChildren = function () {
-        this._view.innerHTML = null;
-        this._children = [];
+    UIComponent.prototype.removeAllChildren = function (destroy, destroyRecursivly) {
+        if (destroy === void 0) { destroy = false; }
+        if (destroyRecursivly === void 0) { destroyRecursivly = true; }
+        while (this.children.length > 0) {
+            var child = this.children[this.children.length - 1];
+            this.removeChild(child, destroy, destroyRecursivly);
+        }
     };
     UIComponent.prototype.updateStyles = function () {
         // override this
