@@ -42,8 +42,8 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     applyStyle(cssStyle: CSSStyleDeclaration | any): void;
     addChild(child: UIComponent): void;
     addChildAt(child: UIComponent, at: number): void;
-    removeChild(child: UIComponent): void;
-    removeAllChildren(): void;
+    removeChild(child: UIComponent, destroy?: boolean, destroyRecursivly?: boolean): void;
+    removeAllChildren(destroy?: boolean, destroyRecursivly?: boolean): void;
     updateStyles(): void;
     /******************************************************************
      * Private Methodes
