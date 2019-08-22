@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.12
+* Fixed: `UIComponent.removeChild` throws error when `UICompnoent.view` not defined anymore
+
 ## v0.1.11
 * Fixed: propertyName `zIndex` not applied in `NativeStylesController`
 
