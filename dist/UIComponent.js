@@ -86,20 +86,6 @@ var UIComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(UIComponent.prototype, "useTransformRotateFirst", {
-        set: function (value) {
-            this._styleController.useTransformRotateFirst = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UIComponent.prototype, "transformRotateOrder", {
-        set: function (order) {
-            this._styleController.transformRotateOrder = order;
-        },
-        enumerable: true,
-        configurable: true
-    });
     UIComponent.prototype.addNativeListener = function (eventType, listener, options) {
         return this._nativeViewEvents.addListener(eventType, listener, options);
     };
