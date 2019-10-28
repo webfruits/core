@@ -53,6 +53,8 @@ export class NativeStylesController {
         rotateZ: 0
     };
 
+    private _useTransformRotateFirst: boolean = false;
+
     private _transformProperties = {
         x: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.x,
         y: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.y,
@@ -90,6 +92,10 @@ export class NativeStylesController {
                 this.warnIfStylesWillBeIgnored(propertyName, value);
             }
         }
+    }
+
+    set useTransformRotateFirst(value: boolean) {
+        this._useTransformRotateFirst = value;
     }
 
     get x(): number {
@@ -221,35 +227,54 @@ export class NativeStylesController {
         let rY = this.parseTransformProperty("rotateY", "deg");
         let rZ = this.parseTransformProperty("rotateZ", "deg");
         let composedValue = "";
-        if (this.hasTransformPropertyAValue("x")) {
-            composedValue += `translateX(${x})`;
-        }
-        if (this.hasTransformPropertyAValue("y")) {
-            composedValue += `translateY(${y})`;
-        }
-        if (this.hasTransformPropertyAValue("z")) {
-            composedValue += `translateZ(${z})`;
-        }
-        if (this.hasTransformPropertyAValue("rotate")) {
-            composedValue += ` rotate(${r})`
-        }
-        if (this.hasTransformPropertyAValue("rotateX")) {
-            composedValue += ` rotateX(${rX})`
-        }
-        if (this.hasTransformPropertyAValue("rotateY")) {
-            composedValue += ` rotateY(${rY})`
-        }
-        if (this.hasTransformPropertyAValue("rotateZ")) {
-            composedValue += ` rotateZ(${rZ})`
-        }
-        if (this.hasTransformPropertyAValue("scaleX")) {
-            composedValue += ` scaleX(${sX})`;
-        }
-        if (this.hasTransformPropertyAValue("scaleY")) {
-            composedValue += ` scaleY(${sY})`;
-        }
-        if (this.hasTransformPropertyAValue("scaleZ")) {
-            composedValue += ` scaleZ(${sZ})`;
+
+        const addTranslateXYZ = () => {
+            if (this.hasTransformPropertyAValue("x")) {
+                composedValue += `translateX(${x})`;
+            }
+            if (this.hasTransformPropertyAValue("y")) {
+                composedValue += `translateY(${y})`;
+            }
+            if (this.hasTransformPropertyAValue("z")) {
+                composedValue += `translateZ(${z})`;
+            }
+        };
+
+        const addRotateXYZ = () => {
+            if (this.hasTransformPropertyAValue("rotate")) {
+                composedValue += ` rotate(${r})`
+            }
+            if (this.hasTransformPropertyAValue("rotateX")) {
+                composedValue += ` rotateX(${rX})`
+            }
+            if (this.hasTransformPropertyAValue("rotateY")) {
+                composedValue += ` rotateY(${rY})`
+            }
+            if (this.hasTransformPropertyAValue("rotateZ")) {
+                composedValue += ` rotateZ(${rZ})`
+            }
+        };
+
+        const addScaleXYZ = () => {
+            if (this.hasTransformPropertyAValue("scaleX")) {
+                composedValue += ` scaleX(${sX})`;
+            }
+            if (this.hasTransformPropertyAValue("scaleY")) {
+                composedValue += ` scaleY(${sY})`;
+            }
+            if (this.hasTransformPropertyAValue("scaleZ")) {
+                composedValue += ` scaleZ(${sZ})`;
+            }
+        };
+
+        if (this._useTransformRotateFirst) {
+            addRotateXYZ();
+            addTranslateXYZ();
+            addScaleXYZ();
+        } else {
+            addTranslateXYZ();
+            addRotateXYZ();
+            addScaleXYZ();
         }
         this._element.style.setProperty("transform", composedValue);
     }
