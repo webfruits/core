@@ -54,6 +54,7 @@ export class NativeStylesController {
     };
 
     private _useTransformRotateFirst: boolean = false;
+    private _transformRotateOrder: string = "x,y,z";
 
     private _transformProperties = {
         x: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.x,
@@ -96,6 +97,10 @@ export class NativeStylesController {
 
     set useTransformRotateFirst(value: boolean) {
         this._useTransformRotateFirst = value;
+    }
+
+    set transformRotateOrder(order: string) {
+        this._transformRotateOrder = order;
     }
 
     get x(): number {
@@ -216,54 +221,54 @@ export class NativeStylesController {
             this._transformProperties.scaleX = value;
             this._transformProperties.scaleY = value;
         }
-        let x = this.parseTransformProperty("x", "px");
-        let y = this.parseTransformProperty("y", "px");
-        let z = this.parseTransformProperty("z", "px");
-        let sX = this.parseTransformProperty("scaleX");
-        let sY = this.parseTransformProperty("scaleY");
-        let sZ = this.parseTransformProperty("scaleZ");
-        let r = this.parseTransformProperty("rotate", "deg");
-        let rX = this.parseTransformProperty("rotateX", "deg");
-        let rY = this.parseTransformProperty("rotateY", "deg");
-        let rZ = this.parseTransformProperty("rotateZ", "deg");
+        let props = {
+            x: this.parseTransformProperty("x", "px"),
+            y: this.parseTransformProperty("y", "px"),
+            z: this.parseTransformProperty("z", "px"),
+            sX: this.parseTransformProperty("scaleX"),
+            sY: this.parseTransformProperty("scaleY"),
+            sZ: this.parseTransformProperty("scaleZ"),
+            r: this.parseTransformProperty("rotate", "deg"),
+            rX: this.parseTransformProperty("rotateX", "deg"),
+            rY: this.parseTransformProperty("rotateY", "deg"),
+            rZ: this.parseTransformProperty("rotateZ", "deg"),
+        };
+
         let composedValue = "";
 
         const addTranslateXYZ = () => {
             if (this.hasTransformPropertyAValue("x")) {
-                composedValue += `translateX(${x})`;
+                composedValue += `translateX(${props.x})`;
             }
             if (this.hasTransformPropertyAValue("y")) {
-                composedValue += `translateY(${y})`;
+                composedValue += `translateY(${props.y})`;
             }
             if (this.hasTransformPropertyAValue("z")) {
-                composedValue += `translateZ(${z})`;
+                composedValue += `translateZ(${props.z})`;
             }
         };
 
         const addRotateXYZ = () => {
             if (this.hasTransformPropertyAValue("rotate")) {
-                composedValue += ` rotate(${r})`
+                composedValue += ` rotate(${props.r})`
             }
-            if (this.hasTransformPropertyAValue("rotateX")) {
-                composedValue += ` rotateX(${rX})`
-            }
-            if (this.hasTransformPropertyAValue("rotateY")) {
-                composedValue += ` rotateY(${rY})`
-            }
-            if (this.hasTransformPropertyAValue("rotateZ")) {
-                composedValue += ` rotateZ(${rZ})`
-            }
+            this._transformRotateOrder.split(",").forEach((axis: string) => {
+                let propName = "rotate" + axis.toUpperCase();
+                if (this.hasTransformPropertyAValue(propName)) {
+                    composedValue += ` ${propName}(${props["r" + axis.toUpperCase()]})`
+                }
+            });
         };
 
         const addScaleXYZ = () => {
             if (this.hasTransformPropertyAValue("scaleX")) {
-                composedValue += ` scaleX(${sX})`;
+                composedValue += ` scaleX(${props.sX})`;
             }
             if (this.hasTransformPropertyAValue("scaleY")) {
-                composedValue += ` scaleY(${sY})`;
+                composedValue += ` scaleY(${props.sY})`;
             }
             if (this.hasTransformPropertyAValue("scaleZ")) {
-                composedValue += ` scaleZ(${sZ})`;
+                composedValue += ` scaleZ(${props.sZ})`;
             }
         };
 

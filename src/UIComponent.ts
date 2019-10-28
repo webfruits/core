@@ -86,6 +86,10 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         this._styleController.useTransformRotateFirst = value;
     }
 
+    set transformRotateOrder(order: string) {
+        this._styleController.transformRotateOrder = order;
+    }
+
     public addNativeListener(eventType: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): number {
         return this._nativeViewEvents.addListener(eventType, listener, options);
     }
