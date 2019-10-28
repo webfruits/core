@@ -13,6 +13,7 @@ export declare class NativeStylesController {
     private static readonly IGNORED_PROPERTIES_FOR_INLINE;
     private static readonly DEFAULT_TRANSFORM_PROPERTY_VALUES;
     private _useTransformRotateFirst;
+    private _transformRotateOrder;
     private _transformProperties;
     /******************************************************************
      * Constructor
@@ -23,6 +24,7 @@ export declare class NativeStylesController {
      *****************************************************************/
     applyStyle(cssStyle: CSSStyleDeclaration | any): void;
     useTransformRotateFirst: boolean;
+    transformRotateOrder: string;
     x: number;
     y: number;
     z: number;

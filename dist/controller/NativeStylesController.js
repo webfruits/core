@@ -12,6 +12,7 @@ var NativeStylesController = /** @class */ (function () {
     function NativeStylesController(_element) {
         this._element = _element;
         this._useTransformRotateFirst = false;
+        this._transformRotateOrder = "x,y,z";
         this._transformProperties = {
             x: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.x,
             y: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.y,
@@ -46,6 +47,13 @@ var NativeStylesController = /** @class */ (function () {
     Object.defineProperty(NativeStylesController.prototype, "useTransformRotateFirst", {
         set: function (value) {
             this._useTransformRotateFirst = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "transformRotateOrder", {
+        set: function (order) {
+            this._transformRotateOrder = order;
         },
         enumerable: true,
         configurable: true
@@ -191,51 +199,50 @@ var NativeStylesController = /** @class */ (function () {
             this._transformProperties.scaleX = value;
             this._transformProperties.scaleY = value;
         }
-        var x = this.parseTransformProperty("x", "px");
-        var y = this.parseTransformProperty("y", "px");
-        var z = this.parseTransformProperty("z", "px");
-        var sX = this.parseTransformProperty("scaleX");
-        var sY = this.parseTransformProperty("scaleY");
-        var sZ = this.parseTransformProperty("scaleZ");
-        var r = this.parseTransformProperty("rotate", "deg");
-        var rX = this.parseTransformProperty("rotateX", "deg");
-        var rY = this.parseTransformProperty("rotateY", "deg");
-        var rZ = this.parseTransformProperty("rotateZ", "deg");
+        var props = {
+            x: this.parseTransformProperty("x", "px"),
+            y: this.parseTransformProperty("y", "px"),
+            z: this.parseTransformProperty("z", "px"),
+            sX: this.parseTransformProperty("scaleX"),
+            sY: this.parseTransformProperty("scaleY"),
+            sZ: this.parseTransformProperty("scaleZ"),
+            r: this.parseTransformProperty("rotate", "deg"),
+            rX: this.parseTransformProperty("rotateX", "deg"),
+            rY: this.parseTransformProperty("rotateY", "deg"),
+            rZ: this.parseTransformProperty("rotateZ", "deg"),
+        };
         var composedValue = "";
         var addTranslateXYZ = function () {
             if (_this.hasTransformPropertyAValue("x")) {
-                composedValue += "translateX(" + x + ")";
+                composedValue += "translateX(" + props.x + ")";
             }
             if (_this.hasTransformPropertyAValue("y")) {
-                composedValue += "translateY(" + y + ")";
+                composedValue += "translateY(" + props.y + ")";
             }
             if (_this.hasTransformPropertyAValue("z")) {
-                composedValue += "translateZ(" + z + ")";
+                composedValue += "translateZ(" + props.z + ")";
             }
         };
         var addRotateXYZ = function () {
             if (_this.hasTransformPropertyAValue("rotate")) {
-                composedValue += " rotate(" + r + ")";
+                composedValue += " rotate(" + props.r + ")";
             }
-            if (_this.hasTransformPropertyAValue("rotateX")) {
-                composedValue += " rotateX(" + rX + ")";
-            }
-            if (_this.hasTransformPropertyAValue("rotateY")) {
-                composedValue += " rotateY(" + rY + ")";
-            }
-            if (_this.hasTransformPropertyAValue("rotateZ")) {
-                composedValue += " rotateZ(" + rZ + ")";
-            }
+            _this._transformRotateOrder.split(",").forEach(function (axis) {
+                var propName = "rotate" + axis.toUpperCase();
+                if (_this.hasTransformPropertyAValue(propName)) {
+                    composedValue += " " + propName + "(" + props["r" + axis.toUpperCase()] + ")";
+                }
+            });
         };
         var addScaleXYZ = function () {
             if (_this.hasTransformPropertyAValue("scaleX")) {
-                composedValue += " scaleX(" + sX + ")";
+                composedValue += " scaleX(" + props.sX + ")";
             }
             if (_this.hasTransformPropertyAValue("scaleY")) {
-                composedValue += " scaleY(" + sY + ")";
+                composedValue += " scaleY(" + props.sY + ")";
             }
             if (_this.hasTransformPropertyAValue("scaleZ")) {
-                composedValue += " scaleZ(" + sZ + ")";
+                composedValue += " scaleZ(" + props.sZ + ")";
             }
         };
         if (this._useTransformRotateFirst) {

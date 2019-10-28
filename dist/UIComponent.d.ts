@@ -36,6 +36,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     readonly isStaged: boolean;
     interactive: boolean;
     useTransformRotateFirst: boolean;
+    transformRotateOrder: string;
     addNativeListener(eventType: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): number;
     removeNativeListener(listenerID: number): void;
     removeAllNativeListeners(): void;
