@@ -2,8 +2,12 @@
 
 #Changelog
 
+## v0.1.13
+* Added: `useTransformRotateFirst` in `NativeStylesController`
+* Added: `transformRotateOrder` to `NativeStylesController`
+
 ## v0.1.12
-* Fixed: `UIComponent.removeChild` throws error when `UICompnoent.view` not defined anymore
+* Fixed: `UIComponent.removeChild` throws error when `UI`Compnoent.view` not defined anymore
 
 ## v0.1.11
 * Fixed: propertyName `zIndex` not applied in `NativeStylesController`
