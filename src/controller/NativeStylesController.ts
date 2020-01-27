@@ -95,6 +95,10 @@ export class NativeStylesController {
         }
     }
 
+    get element(): HTMLElement {
+        return this._element;
+    }
+
     set useTransformRotateFirst(value: boolean) {
         this._useTransformRotateFirst = value;
     }
