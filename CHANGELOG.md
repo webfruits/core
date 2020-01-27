@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.14
+* Added: getter `NativeStylesController.element`
+
 ## v0.1.13
 * Added: `useTransformRotateFirst` in `NativeStylesController`
 * Added: `transformRotateOrder` to `NativeStylesController`
