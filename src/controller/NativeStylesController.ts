@@ -53,6 +53,8 @@ export class NativeStylesController {
         rotateZ: 0
     };
 
+    private _alpha: number = 1;
+
     private _useTransformRotateFirst: boolean = false;
     private _transformRotateOrder: string = "x,y,z";
 
@@ -105,6 +107,14 @@ export class NativeStylesController {
 
     set transformRotateOrder(order: string) {
         this._transformRotateOrder = order;
+    }
+
+    get alpha(): number {
+        return this._alpha;
+    }
+
+    set alpha(value: number) {
+        this.applyNativeProperties("opacity", value);
     }
 
     get x(): number {
@@ -205,6 +215,9 @@ export class NativeStylesController {
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
                     this._element.style[propertyName] = "#" + (value as number).toString(16);
                 } else if (this.isPropertyNameAPureNumber(propertyName)) {
+                    if (propertyName == "opacity") {
+                        this._alpha = value;
+                    }
                     this._element.style[propertyName] = value.toString();
                 } else {
                     this._element.style[propertyName] = value + "px";

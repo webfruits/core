@@ -11,6 +11,7 @@ var NativeStylesController = /** @class */ (function () {
      *****************************************************************/
     function NativeStylesController(_element) {
         this._element = _element;
+        this._alpha = 1;
         this._useTransformRotateFirst = false;
         this._transformRotateOrder = "x,y,z";
         this._transformProperties = {
@@ -44,6 +45,13 @@ var NativeStylesController = /** @class */ (function () {
             }
         }
     };
+    Object.defineProperty(NativeStylesController.prototype, "element", {
+        get: function () {
+            return this._element;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(NativeStylesController.prototype, "useTransformRotateFirst", {
         set: function (value) {
             this._useTransformRotateFirst = value;
@@ -54,6 +62,16 @@ var NativeStylesController = /** @class */ (function () {
     Object.defineProperty(NativeStylesController.prototype, "transformRotateOrder", {
         set: function (order) {
             this._transformRotateOrder = order;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(NativeStylesController.prototype, "alpha", {
+        get: function () {
+            return this._alpha;
+        },
+        set: function (value) {
+            this.applyNativeProperties("opacity", value);
         },
         enumerable: true,
         configurable: true
@@ -178,6 +196,9 @@ var NativeStylesController = /** @class */ (function () {
                     this._element.style[propertyName] = "#" + value.toString(16);
                 }
                 else if (this.isPropertyNameAPureNumber(propertyName)) {
+                    if (propertyName == "opacity") {
+                        this._alpha = value;
+                    }
                     this._element.style[propertyName] = value.toString();
                 }
                 else {

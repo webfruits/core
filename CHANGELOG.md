@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.15
+* Added: `NativeStylesController.alpha`
+
 ## v0.1.14
 * Added: getter `NativeStylesController.element`
 
