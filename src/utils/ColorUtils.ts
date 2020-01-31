@@ -15,4 +15,13 @@ export class ColorUtils {
         return "#" + result;
     }
 
+    static addAlphaToCSS(cssColor: string, alpha: number): string {
+        // taken from https://stackoverflow.com/questions/19799777/how-to-add-transparency-information-to-a-hex-color-code
+        let alphaFloat = alpha * 255;
+        let alphaInt = Math.floor(alphaFloat);
+        let alphaString = alphaInt.toString(16);
+        alphaString = alphaInt < 16 ? '0' + alphaString : alphaString;
+        return cssColor + alphaString;
+    }
+
 }
