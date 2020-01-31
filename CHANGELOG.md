@@ -2,6 +2,10 @@
 
 #Changelog
 
+## v0.1.16
+* Added: `ColorUtils.convertColorFromHexToCSS`
+* Fixed: color conversion from hex to string in `NativeStylesController`
+
 ## v0.1.15
 * Added: `NativeStylesController.alpha`
 

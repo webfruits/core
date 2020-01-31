@@ -1,10 +1,6 @@
 "use strict";
-/******************************************************************
- * NativeStylesController
- *
- * @author matthias.schulz@jash.de
- *****************************************************************/
 Object.defineProperty(exports, "__esModule", { value: true });
+var ColorUtils_1 = require("../utils/ColorUtils");
 var NativeStylesController = /** @class */ (function () {
     /******************************************************************
      * Constructor
@@ -193,7 +189,7 @@ var NativeStylesController = /** @class */ (function () {
         switch (typeof value) {
             case "number":
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
-                    this._element.style[propertyName] = "#" + value.toString(16);
+                    this._element.style[propertyName] = ColorUtils_1.ColorUtils.convertColorFromHexToCSS(value);
                 }
                 else if (this.isPropertyNameAPureNumber(propertyName)) {
                     if (propertyName == "opacity") {
