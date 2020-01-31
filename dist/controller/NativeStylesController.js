@@ -38,19 +38,22 @@ var NativeStylesController = /** @class */ (function () {
     };
     NativeStylesController.prototype.applyStyle = function (cssStyle, priorityLevel) {
         if (priorityLevel === void 0) { priorityLevel = 0; }
-        // let currentLevelStyle = this._stylePriorityLevels.filter((styleLevel) => styleLevel.level == priorityLevel)[0];
-        // if (!currentLevelStyle) {
-        //     currentLevelStyle = {level: priorityLevel, styles: cssStyle};
-        //     this._stylePriorityLevels.push(currentLevelStyle);
-        // }
-        // this._stylePriorityLevels.sort((a, b) => a.level - b.level);
-        // let mergedStyles = {};
-        // this._stylePriorityLevels.forEach((styleLevel) => {
-        //     mergedStyles = Object.assign(mergedStyles, styleLevel.styles);
-        // });
-        for (var propertyName in cssStyle) {
-            if (cssStyle.hasOwnProperty(propertyName)) {
-                var value = cssStyle[propertyName];
+        var currentLevelStyle = this._stylePriorityLevels.filter(function (styleLevel) { return styleLevel.level == priorityLevel; })[0];
+        if (!currentLevelStyle) {
+            currentLevelStyle = { level: priorityLevel, styles: cssStyle };
+            this._stylePriorityLevels.push(currentLevelStyle);
+        }
+        else {
+            currentLevelStyle.styles = Object.assign(currentLevelStyle.styles, cssStyle);
+        }
+        this._stylePriorityLevels.sort(function (a, b) { return a.level - b.level; });
+        var mergedStyles = {};
+        this._stylePriorityLevels.forEach(function (styleLevel) {
+            mergedStyles = Object.assign(mergedStyles, styleLevel.styles);
+        });
+        for (var propertyName in mergedStyles) {
+            if (mergedStyles.hasOwnProperty(propertyName)) {
+                var value = mergedStyles[propertyName];
                 if (this.isTransformProperty(propertyName)) {
                     this.applyTransformProperties(propertyName, value);
                 }

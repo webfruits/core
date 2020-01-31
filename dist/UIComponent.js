@@ -118,9 +118,12 @@ var UIComponent = /** @class */ (function () {
             this._view = null;
         }
     };
+    UIComponent.prototype.getAppliedStyles = function () {
+        return this._styleController.getAppliedStyles();
+    };
     UIComponent.prototype.applyStyle = function (cssStyle, priorityLevel) {
         if (priorityLevel === void 0) { priorityLevel = 0; }
-        this._styleController.applyStyle(cssStyle);
+        this._styleController.applyStyle(cssStyle, priorityLevel);
         this.onStyleAppliedSignal.dispatch();
     };
     UIComponent.prototype.addChild = function (child) {

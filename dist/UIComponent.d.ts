@@ -51,6 +51,10 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     removeNativeListener(listenerID: number): void;
     removeAllNativeListeners(): void;
     destroy(recursivly?: boolean): void;
+    getAppliedStyles(): {
+        level: number;
+        styles: CSSStyleDeclaration | any;
+    }[];
     applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel?: number): void;
     addChild(child: UIComponent): void;
     addChildAt(child: UIComponent, at: number): void;
