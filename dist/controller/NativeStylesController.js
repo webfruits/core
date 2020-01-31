@@ -28,14 +28,29 @@ var NativeStylesController = /** @class */ (function () {
             scaleY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleY,
             scaleZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleZ,
         };
+        this._stylePriorityLevels = [];
     }
     /******************************************************************
      * Public Methodes
      *****************************************************************/
-    NativeStylesController.prototype.applyStyle = function (cssStyle) {
-        for (var propertyName in cssStyle) {
-            if (cssStyle.hasOwnProperty(propertyName)) {
-                var value = cssStyle[propertyName];
+    NativeStylesController.prototype.getAppliedStyles = function () {
+        return this._stylePriorityLevels;
+    };
+    NativeStylesController.prototype.applyStyle = function (cssStyle, priorityLevel) {
+        if (priorityLevel === void 0) { priorityLevel = 0; }
+        var currentLevelStyle = this._stylePriorityLevels.filter(function (styleLevel) { return styleLevel.level == priorityLevel; })[0];
+        if (!currentLevelStyle) {
+            currentLevelStyle = { level: priorityLevel, styles: cssStyle };
+            this._stylePriorityLevels.push(currentLevelStyle);
+        }
+        this._stylePriorityLevels.sort(function (a, b) { return a.level - b.level; });
+        var mergedStyles = {};
+        this._stylePriorityLevels.forEach(function (styleLevel) {
+            mergedStyles = Object.assign(mergedStyles, styleLevel.styles);
+        });
+        for (var propertyName in mergedStyles) {
+            if (mergedStyles.hasOwnProperty(propertyName)) {
+                var value = mergedStyles[propertyName];
                 if (this.isTransformProperty(propertyName)) {
                     this.applyTransformProperties(propertyName, value);
                 }

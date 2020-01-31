@@ -122,7 +122,7 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    public applyStyle(cssStyle: CSSStyleDeclaration | any) {
+    public applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel: number = 0) {
         this._styleController.applyStyle(cssStyle);
         this.onStyleAppliedSignal.dispatch();
     }

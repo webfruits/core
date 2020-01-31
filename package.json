@@ -1,6 +1,6 @@
 {
   "name": "@webfruits/core",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "A TypeScript library for building user interfaces using the real DOM.",
   "homepage": "https://webfruits.io",
   "license": "MIT License",
