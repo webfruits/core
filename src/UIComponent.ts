@@ -122,8 +122,12 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
+    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | any}[] {
+        return this._styleController.getAppliedStyles();
+    }
+
     public applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel: number = 0) {
-        this._styleController.applyStyle(cssStyle);
+        this._styleController.applyStyle(cssStyle, priorityLevel);
         this.onStyleAppliedSignal.dispatch();
     }
 
