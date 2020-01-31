@@ -1,3 +1,5 @@
+import {ColorUtils} from "../utils/ColorUtils";
+
 /******************************************************************
  * NativeStylesController
  *
@@ -213,7 +215,7 @@ export class NativeStylesController {
         switch (typeof value) {
             case "number":
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
-                    this._element.style[propertyName] = "#" + (value as number).toString(16);
+                    this._element.style[propertyName] = ColorUtils.convertColorFromHexToCSS(value);
                 } else if (this.isPropertyNameAPureNumber(propertyName)) {
                     if (propertyName == "opacity") {
                         this._alpha = value;

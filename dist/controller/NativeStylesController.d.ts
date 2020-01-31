@@ -1,8 +1,3 @@
-/******************************************************************
- * NativeStylesController
- *
- * @author matthias.schulz@jash.de
- *****************************************************************/
 export declare class NativeStylesController {
     private _element;
     /******************************************************************
