@@ -21,7 +21,7 @@
     "publish": "npm run build && npm publish --access=public"
   },
   "devDependencies": {
-    "typescript": "^3.3.3333"
+    "typescript": "^3.7.5"
   },
   "keywords": [
     "frontend",
