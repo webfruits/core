@@ -6,6 +6,7 @@
 * Added: `NativeStylesController.applyStyles(.., priorityLevel)` Higher style levels will override styles defined at lower levels. Default level is 0.
 * Added: `NativeStylesController.getAppliedStyles()`
 * Added: `UIComponent.getAppliedStyles()`
+* Added: `UIComponent.applyStyles(.., priorityLevel)`
 
 ## v0.1.17
 * Added: `ColorUtils.addAlphaToCSS`
