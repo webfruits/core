@@ -1,4 +1,4 @@
-import {ColorUtils} from "../utils/ColorUtils";
+import { ColorUtils } from "../utils/ColorUtils";
 
 /******************************************************************
  * NativeStylesController
@@ -13,13 +13,11 @@ export class NativeStylesController {
      *****************************************************************/
 
     public static SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED = true;
-
     private static readonly PURE_NUMBER_TO_STRING_PROPERTIES = [
         "opacity",
         "fontweight",
         "zIndex"
     ];
-
     private static readonly IGNORED_PROPERTIES_FOR_INLINE = [
         "x",
         "y",
@@ -40,7 +38,6 @@ export class NativeStylesController {
         "marginLeft",
         "marginRight"
     ];
-
     private static readonly DEFAULT_TRANSFORM_PROPERTY_VALUES = {
         x: 0,
         y: 0,
@@ -54,12 +51,9 @@ export class NativeStylesController {
         rotateY: 0,
         rotateZ: 0
     };
-
     private _alpha: number = 1;
-
     private _useTransformRotateFirst: boolean = false;
     private _transformRotateOrder: string = "x,y,z";
-
     private _transformProperties = {
         x: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.x,
         y: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.y,
@@ -73,6 +67,7 @@ export class NativeStylesController {
         scaleY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleY,
         scaleZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleZ,
     };
+    private _stylePriorityLevels: {level: number, styles: CSSStyleDeclaration | any}[] = [];
 
     /******************************************************************
      * Constructor
@@ -85,10 +80,26 @@ export class NativeStylesController {
      * Public Methodes
      *****************************************************************/
 
-    public applyStyle(cssStyle: CSSStyleDeclaration | any) {
-        for (let propertyName in cssStyle) {
-            if (cssStyle.hasOwnProperty(propertyName)) {
-                let value = cssStyle[propertyName];
+    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | any}[] {
+        return this._stylePriorityLevels;
+    }
+
+    public applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel: number = 0) {
+        let currentLevelStyle = this._stylePriorityLevels.filter((styleLevel) => styleLevel.level == priorityLevel)[0];
+        if (!currentLevelStyle) {
+            currentLevelStyle = {level: priorityLevel, styles: cssStyle};
+            this._stylePriorityLevels.push(currentLevelStyle);
+        } else {
+            currentLevelStyle.styles = Object.assign(currentLevelStyle.styles, cssStyle);
+        }
+        this._stylePriorityLevels.sort((a, b) => a.level - b.level);
+        let mergedStyles = {};
+        this._stylePriorityLevels.forEach((styleLevel) => {
+            mergedStyles = Object.assign(mergedStyles, styleLevel.styles);
+        });
+        for (let propertyName in mergedStyles) {
+            if (mergedStyles.hasOwnProperty(propertyName)) {
+                let value = mergedStyles[propertyName];
                 if (this.isTransformProperty(propertyName)) {
                     this.applyTransformProperties(propertyName, value);
                 } else {

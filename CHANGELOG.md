@@ -2,6 +2,12 @@
 
 #Changelog
 
+## v0.1.18
+* Added: `NativeStylesController.applyStyles(.., priorityLevel)` Higher style levels will override styles defined at lower levels. Default level is 0.
+* Added: `NativeStylesController.getAppliedStyles()`
+* Added: `UIComponent.getAppliedStyles()`
+* Added: `UIComponent.applyStyles(.., priorityLevel)`
+
 ## v0.1.17
 * Added: `ColorUtils.addAlphaToCSS`
 * Added: `options` paramter for `UIComponent` to make DOMObserver optional and to set a delay for onResizeSignal
