@@ -7,8 +7,8 @@ import { Signal } from "./signal/Signal";
  *****************************************************************/
 export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     protected _elementName: string | HTMLElement;
-    protected _options: {
-        useDOMObserver?: boolean;
+    protected _options?: {
+        disableDOMObserver?: boolean;
         resizeSignalDelay?: number;
     };
     /******************************************************************
@@ -31,11 +31,11 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
      * @param _elementName could be a html tag name or a custom element
      * name, which will define a CustomElement HTMLElement. It can also be an HTMLElement which will be used as view
      * @param _options
-     *  .useDOMServer [true/false] if true starts the DOMObserver to provide listeners onAddedToStageSignal/onRemovedFromStageSignal
-     *  .resizeSignalDelay [number in milliseconds] delayed resize event
+     *  .disableDOMObserver [true/false, default is false] if true stops the DOMObserver and no listeners onAddedToStageSignal/onRemovedFromStageSignal are provided, but maybe have better performance on many DOM-Objects
+     *  .resizeSignalDelay [number in milliseconds, default is 100] delayed resize event
      *****************************************************************/
-    constructor(_elementName: string | HTMLElement, _options: {
-        useDOMObserver?: boolean;
+    constructor(_elementName?: string | HTMLElement, _options?: {
+        disableDOMObserver?: boolean;
         resizeSignalDelay?: number;
     });
     /******************************************************************

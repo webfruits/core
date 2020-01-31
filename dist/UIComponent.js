@@ -18,8 +18,8 @@ var UIComponent = /** @class */ (function () {
      * @param _elementName could be a html tag name or a custom element
      * name, which will define a CustomElement HTMLElement. It can also be an HTMLElement which will be used as view
      * @param _options
-     *  .useDOMServer [true/false] if true starts the DOMObserver to provide listeners onAddedToStageSignal/onRemovedFromStageSignal
-     *  .resizeSignalDelay [number in milliseconds] delayed resize event
+     *  .disableDOMObserver [true/false, default is false] if true stops the DOMObserver and no listeners onAddedToStageSignal/onRemovedFromStageSignal are provided, but maybe have better performance on many DOM-Objects
+     *  .resizeSignalDelay [number in milliseconds, default is 100] delayed resize event
      *****************************************************************/
     function UIComponent(_elementName, _options) {
         if (_elementName === void 0) { _elementName = null; }
@@ -195,7 +195,7 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.initDOMObserver = function () {
         var _this = this;
         var _a;
-        if (!((_a = this._options) === null || _a === void 0 ? void 0 : _a.useDOMObserver))
+        if ((_a = this._options) === null || _a === void 0 ? void 0 : _a.disableDOMObserver)
             return;
         this._domObserver = new DOMObserver_1.DOMObserver(this._view);
         this._domObserver.onAddedToStageSignal.add(function () { return _this.onAddedToStage(); });
@@ -211,7 +211,7 @@ var UIComponent = /** @class */ (function () {
         this._resizeTimeoutID = window.setTimeout(function () {
             _this.updateStyles();
             _this.onStageResizeSignal.dispatch();
-        }, ((_a = this._options) === null || _a === void 0 ? void 0 : _a.resizeSignalDelay) ? (_b = this._options) === null || _b === void 0 ? void 0 : _b.resizeSignalDelay : 0);
+        }, ((_a = this._options) === null || _a === void 0 ? void 0 : _a.resizeSignalDelay) ? (_b = this._options) === null || _b === void 0 ? void 0 : _b.resizeSignalDelay : 100);
     };
     UIComponent.prototype.onAddedToStage = function () {
         this.updateStyles();
