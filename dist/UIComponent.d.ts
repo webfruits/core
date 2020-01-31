@@ -7,6 +7,10 @@ import { Signal } from "./signal/Signal";
  *****************************************************************/
 export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     protected _elementName: string | HTMLElement;
+    protected _options?: {
+        disableDOMObserver?: boolean;
+        resizeSignalDelay?: number;
+    };
     /******************************************************************
      * Properties
      *****************************************************************/
@@ -16,6 +20,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     private _nativeViewEvents;
     private _nativeWindowEvents;
     private _domObserver;
+    private _resizeTimeoutID;
     onAddedToStageSignal: Signal<void>;
     onRemovedFromStageSignal: Signal<void>;
     onStyleAppliedSignal: Signal<void>;
@@ -25,16 +30,23 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
      *
      * @param _elementName could be a html tag name or a custom element
      * name, which will define a CustomElement HTMLElement. It can also be an HTMLElement which will be used as view
+     * @param _options
+     *  .disableDOMObserver [true/false, default is false] if true stops the DOMObserver and no listeners onAddedToStageSignal/onRemovedFromStageSignal are provided, but maybe have better performance on many DOM-Objects
+     *  .resizeSignalDelay [number in milliseconds, default is 100] delayed resize event
      *****************************************************************/
-    constructor(_elementName?: string | HTMLElement);
+    constructor(_elementName?: string | HTMLElement, _options?: {
+        disableDOMObserver?: boolean;
+        resizeSignalDelay?: number;
+    });
     /******************************************************************
      * Public Methodes
      *****************************************************************/
-    readonly view: T;
-    readonly transform: NativeStylesController;
-    readonly children: UIComponent[];
-    readonly isStaged: boolean;
-    interactive: boolean;
+    get view(): T;
+    get transform(): NativeStylesController;
+    get children(): UIComponent[];
+    get isStaged(): boolean;
+    get interactive(): boolean;
+    set interactive(value: boolean);
     addNativeListener(eventType: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): number;
     removeNativeListener(listenerID: number): void;
     removeAllNativeListeners(): void;
@@ -49,9 +61,9 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
      * Private Methodes
      *****************************************************************/
     private initView;
-    private initNativeEventsControllers;
+    private initEventsControllers;
     private initStyleController;
-    private initDOMOberver;
+    private initDOMObserver;
     /******************************************************************
      * Events
      *****************************************************************/

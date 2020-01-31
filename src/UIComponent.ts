@@ -23,9 +23,10 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     private _nativeViewEvents: NativeEventsController;
     private _nativeWindowEvents: NativeEventsController;
     private _domObserver: DOMObserver;
+    private _resizeTimeoutID: number;
 
-    public onAddedToStageSignal = new Signal();
-    public onRemovedFromStageSignal = new Signal();
+    public onAddedToStageSignal = new Signal(); // will only dispatch if _options.useDOMServer is true
+    public onRemovedFromStageSignal = new Signal(); // will only dispatch if _options.useDOMServer is true
     public onStyleAppliedSignal = new Signal();
     public onStageResizeSignal = new Signal();
 
@@ -34,14 +35,22 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
      *
      * @param _elementName could be a html tag name or a custom element
      * name, which will define a CustomElement HTMLElement. It can also be an HTMLElement which will be used as view
+     * @param _options
+     *  .disableDOMObserver [true/false, default is false] if true stops the DOMObserver and no listeners onAddedToStageSignal/onRemovedFromStageSignal are provided, but maybe have better performance on many DOM-Objects
+     *  .resizeSignalDelay [number in milliseconds, default is 100] delayed resize event
      *****************************************************************/
 
-    constructor(protected _elementName: string | HTMLElement = null) {
+    constructor(
+        protected _elementName: string | HTMLElement = null,
+        protected _options?: {
+            disableDOMObserver?: boolean,
+            resizeSignalDelay?: number
+        }) {
         if (!this._elementName) this._elementName = "ui-component";
         this.initView();
-        this.initNativeEventsControllers();
+        this.initEventsControllers();
         this.initStyleController();
-        this.initDOMOberver();
+        this.initDOMObserver();
     }
 
     /******************************************************************
@@ -175,7 +184,7 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    private initNativeEventsControllers(): any {
+    private initEventsControllers(): any {
         this._nativeViewEvents = new NativeEventsController(this._view);
         this._nativeWindowEvents = new NativeEventsController(window);
         this._nativeWindowEvents.addListener("resize", () => this.onStageResized());
@@ -190,7 +199,8 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    private initDOMOberver() {
+    private initDOMObserver() {
+        if (this._options?.disableDOMObserver) return;
         this._domObserver = new DOMObserver(this._view);
         this._domObserver.onAddedToStageSignal.add(() => this.onAddedToStage());
         this._domObserver.onRemovedFromStageSignal.add(() => this.onRemovedFromStage());
@@ -201,8 +211,11 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
      *****************************************************************/
 
     private onStageResized() {
-        this.updateStyles();
-        this.onStageResizeSignal.dispatch();
+        clearTimeout(this._resizeTimeoutID);
+        this._resizeTimeoutID = window.setTimeout(() => {
+            this.updateStyles();
+            this.onStageResizeSignal.dispatch();
+        }, this._options?.resizeSignalDelay ? this._options?.resizeSignalDelay : 100);
     }
 
     private onAddedToStage() {

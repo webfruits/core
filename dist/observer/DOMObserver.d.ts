@@ -1,9 +1,9 @@
+import { Signal } from "../signal/Signal";
 /******************************************************************
  * DOMObserver
  *
  * @author matthias.schulz@jash.de
  *****************************************************************/
-import { Signal } from "../signal/Signal";
 export declare class DOMObserver {
     private _elementToObserve;
     private _defaultObserveRootElement;

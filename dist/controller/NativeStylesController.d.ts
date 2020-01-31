@@ -1,3 +1,8 @@
+/******************************************************************
+ * NativeStylesController
+ *
+ * @author matthias.schulz@jash.de
+ *****************************************************************/
 export declare class NativeStylesController {
     private _element;
     /******************************************************************
@@ -19,21 +24,33 @@ export declare class NativeStylesController {
      * Public Methodes
      *****************************************************************/
     applyStyle(cssStyle: CSSStyleDeclaration | any): void;
-    readonly element: HTMLElement;
-    useTransformRotateFirst: boolean;
-    transformRotateOrder: string;
-    alpha: number;
-    x: number;
-    y: number;
-    z: number;
-    rotate: number;
-    rotateX: number;
-    rotateY: number;
-    rotateZ: number;
-    scale: number;
-    scaleX: number;
-    scaleY: number;
-    scaleZ: number;
+    get element(): HTMLElement;
+    set useTransformRotateFirst(value: boolean);
+    set transformRotateOrder(order: string);
+    get alpha(): number;
+    set alpha(value: number);
+    get x(): number;
+    set x(value: number);
+    get y(): number;
+    set y(value: number);
+    get z(): number;
+    set z(value: number);
+    get rotate(): number;
+    set rotate(value: number);
+    get rotateX(): number;
+    set rotateX(value: number);
+    get rotateY(): number;
+    set rotateY(value: number);
+    get rotateZ(): number;
+    set rotateZ(value: number);
+    get scale(): number;
+    set scale(value: number);
+    get scaleX(): number;
+    set scaleX(value: number);
+    get scaleY(): number;
+    set scaleY(value: number);
+    get scaleZ(): number;
+    set scaleZ(value: number);
     /******************************************************************
      * Private Methodes
      *****************************************************************/
