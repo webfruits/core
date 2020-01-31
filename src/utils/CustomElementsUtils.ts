@@ -51,6 +51,7 @@ export class CustomElementsUtils {
         this._es5CustomElementsAdapterInitizialied = true;
         if (void 0 === window['Reflect'] || void 0 === window.customElements || window.customElements.hasOwnProperty('polyfillWrapFlushCallback')) return;
         const a = HTMLElement;
+        // @ts-ignore
         window['HTMLElement'] = function HTMLElement() {
             return Reflect.construct(a, [], this.constructor)
         };
