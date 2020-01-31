@@ -17,7 +17,7 @@ export declare class NativeEventsController {
     /******************************************************************
      * Public Methodes
      *****************************************************************/
-    readonly listenerIDs: number[];
+    get listenerIDs(): number[];
     destroy(): void;
     addListener(eventType: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): number;
     removeAllListeners(): void;

@@ -17,21 +17,25 @@ var UIComponent = /** @class */ (function () {
      *
      * @param _elementName could be a html tag name or a custom element
      * name, which will define a CustomElement HTMLElement. It can also be an HTMLElement which will be used as view
+     * @param _options
+     *  .useDOMServer [true/false] if true starts the DOMObserver to provide listeners onAddedToStageSignal/onRemovedFromStageSignal
+     *  .resizeSignalDelay [number in milliseconds] delayed resize event
      *****************************************************************/
-    function UIComponent(_elementName) {
+    function UIComponent(_elementName, _options) {
         if (_elementName === void 0) { _elementName = null; }
         this._elementName = _elementName;
+        this._options = _options;
         this._children = [];
-        this.onAddedToStageSignal = new Signal_1.Signal();
-        this.onRemovedFromStageSignal = new Signal_1.Signal();
+        this.onAddedToStageSignal = new Signal_1.Signal(); // will only dispatch if _options.useDOMServer is true
+        this.onRemovedFromStageSignal = new Signal_1.Signal(); // will only dispatch if _options.useDOMServer is true
         this.onStyleAppliedSignal = new Signal_1.Signal();
         this.onStageResizeSignal = new Signal_1.Signal();
         if (!this._elementName)
             this._elementName = "ui-component";
         this.initView();
-        this.initNativeEventsControllers();
+        this.initEventsControllers();
         this.initStyleController();
-        this.initDOMOberver();
+        this.initDOMObserver();
     }
     Object.defineProperty(UIComponent.prototype, "view", {
         /******************************************************************
@@ -174,7 +178,7 @@ var UIComponent = /** @class */ (function () {
             this._view = this._elementName;
         }
     };
-    UIComponent.prototype.initNativeEventsControllers = function () {
+    UIComponent.prototype.initEventsControllers = function () {
         var _this = this;
         this._nativeViewEvents = new NativeEventsController_1.NativeEventsController(this._view);
         this._nativeWindowEvents = new NativeEventsController_1.NativeEventsController(window);
@@ -188,8 +192,11 @@ var UIComponent = /** @class */ (function () {
             });
         }
     };
-    UIComponent.prototype.initDOMOberver = function () {
+    UIComponent.prototype.initDOMObserver = function () {
         var _this = this;
+        var _a;
+        if (!((_a = this._options) === null || _a === void 0 ? void 0 : _a.useDOMObserver))
+            return;
         this._domObserver = new DOMObserver_1.DOMObserver(this._view);
         this._domObserver.onAddedToStageSignal.add(function () { return _this.onAddedToStage(); });
         this._domObserver.onRemovedFromStageSignal.add(function () { return _this.onRemovedFromStage(); });
@@ -198,8 +205,13 @@ var UIComponent = /** @class */ (function () {
      * Events
      *****************************************************************/
     UIComponent.prototype.onStageResized = function () {
-        this.updateStyles();
-        this.onStageResizeSignal.dispatch();
+        var _this = this;
+        var _a, _b;
+        clearTimeout(this._resizeTimeoutID);
+        this._resizeTimeoutID = window.setTimeout(function () {
+            _this.updateStyles();
+            _this.onStageResizeSignal.dispatch();
+        }, ((_a = this._options) === null || _a === void 0 ? void 0 : _a.resizeSignalDelay) ? (_b = this._options) === null || _b === void 0 ? void 0 : _b.resizeSignalDelay : 0);
     };
     UIComponent.prototype.onAddedToStage = function () {
         this.updateStyles();

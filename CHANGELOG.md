@@ -2,6 +2,11 @@
 
 #Changelog
 
+## v0.1.17
+* Added: `ColorUtils.addAlphaToCSS`
+* Added: `options` paramter for `UIComponent` to make DOMObserver optional and to set a delay for onResizeSignal
+* Updated: TypeScript to v3.7.5
+
 ## v0.1.16
 * Added: `ColorUtils.convertColorFromHexToCSS`
 * Fixed: color conversion from hex to string in `NativeStylesController`

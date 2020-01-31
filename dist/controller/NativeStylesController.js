@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ColorUtils_1 = require("../utils/ColorUtils");
+/******************************************************************
+ * NativeStylesController
+ *
+ * @author matthias.schulz@jash.de
+ *****************************************************************/
 var NativeStylesController = /** @class */ (function () {
     /******************************************************************
      * Constructor

@@ -62,6 +62,7 @@ var CustomElementsUtils = /** @class */ (function () {
         if (void 0 === window['Reflect'] || void 0 === window.customElements || window.customElements.hasOwnProperty('polyfillWrapFlushCallback'))
             return;
         var a = HTMLElement;
+        // @ts-ignore
         window['HTMLElement'] = function HTMLElement() {
             return Reflect.construct(a, [], this.constructor);
         };

@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Signal_1 = require("../signal/Signal");
 /******************************************************************
  * DOMObserver
  *
  * @author matthias.schulz@jash.de
  *****************************************************************/
-var Signal_1 = require("../signal/Signal");
 var DOMObserver = /** @class */ (function () {
     /******************************************************************
      * Constructor
