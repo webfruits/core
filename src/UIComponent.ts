@@ -104,7 +104,6 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     }
 
     public destroy(recursivly: boolean = true, recursiveDelayInMS: number = 0) {
-        console.log("destroing");
         if (recursivly) {
             this.children.forEach((child: UIComponent, i: number) => {
                 setTimeout(() => {
