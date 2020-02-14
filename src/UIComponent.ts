@@ -103,10 +103,12 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         this._nativeViewEvents.removeAllListeners();
     }
 
-    public destroy(recursivly: boolean = true) {
+    public destroy(recursivly: boolean = true, recursiveDelayInMS: number = 0) {
         if (recursivly) {
-            this.children.forEach((child: UIComponent) => {
-                child.destroy();
+            this.children.forEach((child: UIComponent, i: number) => {
+                setTimeout(() => {
+                    child.destroy(recursivly, recursiveDelayInMS);
+                }, recursiveDelayInMS * (i + 1))
             });
         }
         this.onAddedToStageSignal.removeAll();
@@ -122,7 +124,7 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | any}[] {
+    public getAppliedStyles(): { level: number, styles: CSSStyleDeclaration | any }[] {
         return this._styleController.getAppliedStyles();
     }
 

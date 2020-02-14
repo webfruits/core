@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v0.1.19
+* Added: `UIComponent.destroy(.., recursiveDelayInMS)` delayed destroying children, for better performance
+
 ## v0.1.18
 * Added: `NativeStylesController.applyStyles(.., priorityLevel)` Higher style levels will override styles defined at lower levels. Default level is 0.
 * Added: `NativeStylesController.getAppliedStyles()`

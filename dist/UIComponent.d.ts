@@ -50,7 +50,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     addNativeListener(eventType: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): number;
     removeNativeListener(listenerID: number): void;
     removeAllNativeListeners(): void;
-    destroy(recursivly?: boolean): void;
+    destroy(recursivly?: boolean, recursiveDelayInMS?: number): void;
     getAppliedStyles(): {
         level: number;
         styles: CSSStyleDeclaration | any;
