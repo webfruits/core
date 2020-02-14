@@ -104,9 +104,14 @@ var UIComponent = /** @class */ (function () {
         if (recursiveDelayInMS === void 0) { recursiveDelayInMS = 0; }
         if (recursivly) {
             this.children.forEach(function (child, i) {
-                setTimeout(function () {
+                if (recursiveDelayInMS == 0) {
                     child.destroy(recursivly, recursiveDelayInMS);
-                }, recursiveDelayInMS * (i + 1));
+                }
+                else {
+                    setTimeout(function () {
+                        child.destroy(recursivly, recursiveDelayInMS);
+                    }, recursiveDelayInMS * (i + 1));
+                }
             });
         }
         this.onAddedToStageSignal.removeAll();

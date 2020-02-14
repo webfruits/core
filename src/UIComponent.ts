@@ -106,9 +106,13 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     public destroy(recursivly: boolean = true, recursiveDelayInMS: number = 0) {
         if (recursivly) {
             this.children.forEach((child: UIComponent, i: number) => {
-                setTimeout(() => {
+                if (recursiveDelayInMS == 0) {
                     child.destroy(recursivly, recursiveDelayInMS);
-                }, recursiveDelayInMS * (i + 1))
+                } else {
+                    setTimeout(() => {
+                        child.destroy(recursivly, recursiveDelayInMS);
+                    }, recursiveDelayInMS * (i + 1))
+                }
             });
         }
         this.onAddedToStageSignal.removeAll();
