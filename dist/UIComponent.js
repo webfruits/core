@@ -99,11 +99,14 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.removeAllNativeListeners = function () {
         this._nativeViewEvents.removeAllListeners();
     };
-    UIComponent.prototype.destroy = function (recursivly) {
+    UIComponent.prototype.destroy = function (recursivly, recursiveDelayInMS) {
         if (recursivly === void 0) { recursivly = true; }
+        if (recursiveDelayInMS === void 0) { recursiveDelayInMS = 0; }
         if (recursivly) {
-            this.children.forEach(function (child) {
-                child.destroy();
+            this.children.forEach(function (child, i) {
+                setTimeout(function () {
+                    child.destroy(recursivly, recursiveDelayInMS);
+                }, recursiveDelayInMS * (i + 1));
             });
         }
         this.onAddedToStageSignal.removeAll();
