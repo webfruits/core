@@ -104,15 +104,12 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     }
 
     public destroy(recursivly: boolean = true, recursiveDelayInMS: number = 0) {
+        console.log("destroing");
         if (recursivly) {
             this.children.forEach((child: UIComponent, i: number) => {
-                if (recursiveDelayInMS == 0) {
+                setTimeout(() => {
                     child.destroy(recursivly, recursiveDelayInMS);
-                } else {
-                    setTimeout(() => {
-                        child.destroy(recursivly, recursiveDelayInMS);
-                    }, recursiveDelayInMS * (i + 1))
-                }
+                }, recursiveDelayInMS * (i + 1))
             });
         }
         this.onAddedToStageSignal.removeAll();
@@ -128,7 +125,7 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | any}[] {
+    public getAppliedStyles(): { level: number, styles: CSSStyleDeclaration | any }[] {
         return this._styleController.getAppliedStyles();
     }
 
