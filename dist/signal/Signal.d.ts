@@ -15,6 +15,10 @@ export declare class Signal<T = void> {
     /******************************************************************
      * Public Methodes
      *****************************************************************/
+    get listeners(): {
+        callback: (param: T) => void;
+        onlyOnce?: boolean;
+    }[];
     add(callback: (param: T) => void): (param: T) => void;
     addOnce(callback: (param: T) => void): (param: T) => void;
     remove(callbackToRemove: (param: T) => void): void;
