@@ -109,10 +109,11 @@ var UIComponent = /** @class */ (function () {
                 }, recursiveDelayInMS * (i + 1));
             });
         }
-        this.onAddedToStageSignal.removeAll();
-        this.onRemovedFromStageSignal.removeAll();
-        this.onStyleAppliedSignal.removeAll();
-        this.onStageResizeSignal.removeAll();
+        Object.values(this).forEach(function (prop) {
+            if (prop instanceof Signal_1.Signal) {
+                prop.removeAll();
+            }
+        });
         this._nativeViewEvents.destroy();
         this._nativeWindowEvents.destroy();
         this._domObserver.destroy();
