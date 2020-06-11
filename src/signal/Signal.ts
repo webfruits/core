@@ -23,6 +23,10 @@ export class Signal<T = void> {
      * Public Methodes
      *****************************************************************/
 
+    get listeners(): { callback: (param: T) => void; onlyOnce?: boolean }[] {
+        return this._listeners;
+    }
+
     public add(callback: (param: T) => void): (param: T) => void {
         if (!this.callbackAlreadyExists(callback)) {
             this._listeners.push({

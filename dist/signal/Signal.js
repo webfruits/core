@@ -15,9 +15,16 @@ var Signal = /** @class */ (function () {
          *****************************************************************/
         this._listeners = [];
     }
-    /******************************************************************
-     * Public Methodes
-     *****************************************************************/
+    Object.defineProperty(Signal.prototype, "listeners", {
+        /******************************************************************
+         * Public Methodes
+         *****************************************************************/
+        get: function () {
+            return this._listeners;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Signal.prototype.add = function (callback) {
         if (!this.callbackAlreadyExists(callback)) {
             this._listeners.push({

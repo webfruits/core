@@ -2,6 +2,10 @@
 
 #Changelog
 
+## v1.0.0
+* Added: `Signal.listeners` returns all currently registered listeners
+* Added: `UIComponent.destroy` will remove all signal listeners automatically 
+
 ## v0.1.19
 * Added: `UIComponent.destroy(.., recursiveDelayInMS)` delayed destroying children, for better performance
 
