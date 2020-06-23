@@ -67,7 +67,7 @@ export class NativeStylesController {
         scaleY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleY,
         scaleZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleZ,
     };
-    private _stylePriorityLevels: {level: number, styles: CSSStyleDeclaration | any}[] = [];
+    private _stylePriorityLevels: {level: number, styles: CSSStyleDeclaration | {}}[] = [];
 
     /******************************************************************
      * Constructor
@@ -80,11 +80,11 @@ export class NativeStylesController {
      * Public Methodes
      *****************************************************************/
 
-    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | any}[] {
+    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | {}}[] {
         return this._stylePriorityLevels;
     }
 
-    public applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel: number = 0) {
+    public applyStyle(cssStyle: CSSStyleDeclaration | {}, priorityLevel: number = 0) {
         let currentLevelStyle = this._stylePriorityLevels.filter((styleLevel) => styleLevel.level == priorityLevel)[0];
         if (!currentLevelStyle) {
             currentLevelStyle = {level: priorityLevel, styles: cssStyle};
@@ -222,7 +222,7 @@ export class NativeStylesController {
      * Private Methodes
      *****************************************************************/
 
-    private applyNativeProperties(propertyName: string, value: any) {
+    private applyNativeProperties(propertyName: string, value: number | string | object) {
         switch (typeof value) {
             case "number":
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
@@ -245,11 +245,11 @@ export class NativeStylesController {
         }
     }
 
-    private applyTransformProperties(propertyName: string, value: any) {
+    private applyTransformProperties(propertyName: string, value: number | string | object) {
         this._transformProperties[propertyName] = value;
         if (propertyName == "scale") {
-            this._transformProperties.scaleX = value;
-            this._transformProperties.scaleY = value;
+            this._transformProperties.scaleX = value as number;
+            this._transformProperties.scaleY = value as number;
         }
         let props = {
             x: this.parseTransformProperty("x", "px"),
@@ -352,7 +352,7 @@ export class NativeStylesController {
         return this._transformProperties[transformPropertyName] == NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES[transformPropertyName];
     }
 
-    private warnIfStylesWillBeIgnored(propertyName: string, value: any) {
+    private warnIfStylesWillBeIgnored(propertyName: string, value: number | string | object) {
         if (!NativeStylesController.SHOW_WARNINGS_WHEN_PROPERTIES_GETTING_IGNORED) {
             return;
         }

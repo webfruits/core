@@ -53,9 +53,9 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     destroy(recursivly?: boolean, recursiveDelayInMS?: number): void;
     getAppliedStyles(): {
         level: number;
-        styles: CSSStyleDeclaration | any;
+        styles: CSSStyleDeclaration | {};
     }[];
-    applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel?: number): void;
+    applyStyle(cssStyle: CSSStyleDeclaration | {}, priorityLevel?: number): void;
     addChild(child: UIComponent): void;
     addChildAt(child: UIComponent, at: number): void;
     removeChild(child: UIComponent, destroy?: boolean, destroyRecursivly?: boolean): void;

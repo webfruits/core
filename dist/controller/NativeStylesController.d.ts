@@ -26,9 +26,9 @@ export declare class NativeStylesController {
      *****************************************************************/
     getAppliedStyles(): {
         level: number;
-        styles: CSSStyleDeclaration | any;
+        styles: CSSStyleDeclaration | {};
     }[];
-    applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel?: number): void;
+    applyStyle(cssStyle: CSSStyleDeclaration | {}, priorityLevel?: number): void;
     get element(): HTMLElement;
     set useTransformRotateFirst(value: boolean);
     set transformRotateOrder(order: string);
