@@ -4,6 +4,7 @@ import {CustomElementsUtils} from "./utils/CustomElementsUtils";
 import {NativeEventsController} from "./controller/NativeEventsController";
 import {DOMObserver} from "./observer/DOMObserver";
 import {Signal} from "./signal/Signal";
+import {INativeStyleDeclaration} from "./interface/INativeStyleDeclaration";
 
 /******************************************************************
  * UIComponent
@@ -125,11 +126,11 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    public getAppliedStyles(): { level: number, styles: CSSStyleDeclaration | any }[] {
+    public getAppliedStyles(): { level: number, styles: INativeStyleDeclaration }[] {
         return this._styleController.getAppliedStyles();
     }
 
-    public applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel: number = 0) {
+    public applyStyle(cssStyle: INativeStyleDeclaration, priorityLevel: number = 0) {
         this._styleController.applyStyle(cssStyle, priorityLevel);
         this.onStyleAppliedSignal.dispatch();
     }
@@ -191,7 +192,7 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         }
     }
 
-    private initEventsControllers(): any {
+    private initEventsControllers() {
         this._nativeViewEvents = new NativeEventsController(this._view);
         this._nativeWindowEvents = new NativeEventsController(window);
         this._nativeWindowEvents.addListener("resize", () => this.onStageResized());

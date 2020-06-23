@@ -1,3 +1,4 @@
+import { INativeStyleDeclaration } from "../interface/INativeStyleDeclaration";
 /******************************************************************
  * NativeStylesController
  *
@@ -26,9 +27,9 @@ export declare class NativeStylesController {
      *****************************************************************/
     getAppliedStyles(): {
         level: number;
-        styles: CSSStyleDeclaration | any;
+        styles: INativeStyleDeclaration;
     }[];
-    applyStyle(cssStyle: CSSStyleDeclaration | any, priorityLevel?: number): void;
+    applyStyle(cssStyle: INativeStyleDeclaration, priorityLevel?: number): void;
     get element(): HTMLElement;
     set useTransformRotateFirst(value: boolean);
     set transformRotateOrder(order: string);
