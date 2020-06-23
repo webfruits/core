@@ -1,4 +1,5 @@
 import { ColorUtils } from "../utils/ColorUtils";
+import {INativeStyleDeclaration} from "../interface/INativeStyleDeclaration";
 
 /******************************************************************
  * NativeStylesController
@@ -67,7 +68,7 @@ export class NativeStylesController {
         scaleY: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleY,
         scaleZ: NativeStylesController.DEFAULT_TRANSFORM_PROPERTY_VALUES.scaleZ,
     };
-    private _stylePriorityLevels: {level: number, styles: CSSStyleDeclaration | {}}[] = [];
+    private _stylePriorityLevels: {level: number, styles: INativeStyleDeclaration}[] = [];
 
     /******************************************************************
      * Constructor
@@ -80,11 +81,11 @@ export class NativeStylesController {
      * Public Methodes
      *****************************************************************/
 
-    public getAppliedStyles(): {level: number, styles: CSSStyleDeclaration | {}}[] {
+    public getAppliedStyles(): {level: number, styles: INativeStyleDeclaration}[] {
         return this._stylePriorityLevels;
     }
 
-    public applyStyle(cssStyle: CSSStyleDeclaration | {}, priorityLevel: number = 0) {
+    public applyStyle(cssStyle: INativeStyleDeclaration, priorityLevel: number = 0) {
         let currentLevelStyle = this._stylePriorityLevels.filter((styleLevel) => styleLevel.level == priorityLevel)[0];
         if (!currentLevelStyle) {
             currentLevelStyle = {level: priorityLevel, styles: cssStyle};

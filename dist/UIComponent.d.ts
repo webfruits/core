@@ -1,5 +1,6 @@
 import { NativeStylesController } from "./controller/NativeStylesController";
 import { Signal } from "./signal/Signal";
+import { INativeStyleDeclaration } from "./interface/INativeStyleDeclaration";
 /******************************************************************
  * UIComponent
  *
@@ -53,9 +54,9 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     destroy(recursivly?: boolean, recursiveDelayInMS?: number): void;
     getAppliedStyles(): {
         level: number;
-        styles: CSSStyleDeclaration | {};
+        styles: INativeStyleDeclaration;
     }[];
-    applyStyle(cssStyle: CSSStyleDeclaration | {}, priorityLevel?: number): void;
+    applyStyle(cssStyle: INativeStyleDeclaration, priorityLevel?: number): void;
     addChild(child: UIComponent): void;
     addChildAt(child: UIComponent, at: number): void;
     removeChild(child: UIComponent, destroy?: boolean, destroyRecursivly?: boolean): void;
