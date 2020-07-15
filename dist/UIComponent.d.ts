@@ -15,6 +15,7 @@ export declare class UIComponent<T extends HTMLElement = HTMLElement> {
     /******************************************************************
      * Properties
      *****************************************************************/
+    static ignoreStageResizeSignals: boolean;
     private _view;
     private _children;
     private _styleController;

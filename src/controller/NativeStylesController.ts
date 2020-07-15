@@ -1,5 +1,5 @@
 import { ColorUtils } from "../utils/ColorUtils";
-import {INativeStyleDeclaration} from "../interface/INativeStyleDeclaration";
+import { INativeStyleDeclaration } from "../interface/INativeStyleDeclaration";
 
 /******************************************************************
  * NativeStylesController

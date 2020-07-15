@@ -215,6 +215,9 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.onStageResized = function () {
         var _this = this;
         var _a, _b;
+        if (UIComponent.ignoreStageResizeSignals) {
+            return;
+        }
         clearTimeout(this._resizeTimeoutID);
         this._resizeTimeoutID = window.setTimeout(function () {
             _this.updateStyles();
@@ -228,6 +231,10 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.onRemovedFromStage = function () {
         this.onRemovedFromStageSignal.dispatch();
     };
+    /******************************************************************
+     * Properties
+     *****************************************************************/
+    UIComponent.ignoreStageResizeSignals = false;
     return UIComponent;
 }());
 exports.UIComponent = UIComponent;
