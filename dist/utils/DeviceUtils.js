@@ -8,6 +8,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DeviceUtils = /** @class */ (function () {
     function DeviceUtils() {
     }
+    Object.defineProperty(DeviceUtils, "SCREEN_PIXEL_RATIO", {
+        get: function () {
+            return window.devicePixelRatio || 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DeviceUtils, "HAS_TOUCH_SCREEN", {
         get: function () {
             return navigator.maxTouchPoints > 0 || 'ontouchstart' in window;

@@ -4,6 +4,7 @@
 
 ## v1.0.2
 * Added: DeviceUtils.IS_ANDROID
+* Added: DeviceUtils.SCREEN_PIXEL_RATIO
 * Added: UIComponent.ignoreStageResizeSignals
 
 ## v1.0.1

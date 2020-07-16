@@ -6,6 +6,10 @@
 
 export class DeviceUtils {
 
+    static get SCREEN_PIXEL_RATIO(): number {
+        return window.devicePixelRatio || 1;
+    }
+
     public static get HAS_TOUCH_SCREEN(): boolean {
         return navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
     }
