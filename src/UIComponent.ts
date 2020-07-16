@@ -18,6 +18,8 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
      * Properties
      *****************************************************************/
 
+    static ignoreStageResizeSignals: boolean = false;
+
     private _view: T;
     private _children: UIComponent[] = [];
     private _styleController: NativeStylesController;
@@ -219,6 +221,9 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
      *****************************************************************/
 
     private onStageResized() {
+        if (UIComponent.ignoreStageResizeSignals) {
+            return;
+        }
         clearTimeout(this._resizeTimeoutID);
         this._resizeTimeoutID = window.setTimeout(() => {
             this.updateStyles();

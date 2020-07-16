@@ -6,12 +6,20 @@
 
 export class DeviceUtils {
 
+    static get SCREEN_PIXEL_RATIO(): number {
+        return window.devicePixelRatio || 1;
+    }
+
     public static get HAS_TOUCH_SCREEN(): boolean {
         return navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
     }
 
     public static get IS_IOS(): boolean {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window['MSStream'];
+    }
+
+    public static get IS_ANDROID(): boolean {
+        return /Android/.test(navigator.userAgent);
     }
 
     public static get IS_MOBILE(): boolean {

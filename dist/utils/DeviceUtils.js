@@ -8,6 +8,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var DeviceUtils = /** @class */ (function () {
     function DeviceUtils() {
     }
+    Object.defineProperty(DeviceUtils, "SCREEN_PIXEL_RATIO", {
+        get: function () {
+            return window.devicePixelRatio || 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DeviceUtils, "HAS_TOUCH_SCREEN", {
         get: function () {
             return navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
@@ -18,6 +25,13 @@ var DeviceUtils = /** @class */ (function () {
     Object.defineProperty(DeviceUtils, "IS_IOS", {
         get: function () {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window['MSStream'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DeviceUtils, "IS_ANDROID", {
+        get: function () {
+            return /Android/.test(navigator.userAgent);
         },
         enumerable: true,
         configurable: true

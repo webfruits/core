@@ -2,13 +2,18 @@
 
 #Changelog
 
+## v1.0.2
+* Added: DeviceUtils.IS_ANDROID
+* Added: DeviceUtils.SCREEN_PIXEL_RATIO
+* Added: UIComponent.ignoreStageResizeSignals
+
 ## v1.0.1
 * Added: INativeStyleDeclaration to replace `CSSStyleDeclaration | any` 
 * Refactored: use `number | string | object` type for style property values instead of `any`
 
 ## v1.0.0
 * Added: `Signal.listeners` returns all currently registered listeners
-* Added: `UIComponent.destroy` will remove all signal listeners automatically 
+* Added: `UIComponent.destroy` will remove all signal list**eners automatically 
 
 ## v0.1.19
 * Added: `UIComponent.destroy(.., recursiveDelayInMS)` delayed destroying children, for better performance
