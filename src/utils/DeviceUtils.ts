@@ -14,6 +14,10 @@ export class DeviceUtils {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window['MSStream'];
     }
 
+    public static get IS_ANDROID(): boolean {
+        return /Android/.test(navigator.userAgent);
+    }
+
     public static get IS_MOBILE(): boolean {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }

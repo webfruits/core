@@ -3,6 +3,7 @@
 #Changelog
 
 ## v1.0.2
+* Added: DeviceUtils.IS_ANDROID
 * Added: UIComponent.ignoreStageResizeSignals
 
 ## v1.0.1

@@ -22,6 +22,13 @@ var DeviceUtils = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(DeviceUtils, "IS_ANDROID", {
+        get: function () {
+            return /Android/.test(navigator.userAgent);
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DeviceUtils, "IS_MOBILE", {
         get: function () {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
