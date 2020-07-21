@@ -2,6 +2,10 @@
 
 #Changelog
 
+## v1.0.3
+* Fixed: NativeStylesController warning on ignored inline properties
+* Fixed: Error on UiComponent.interactive if view is undefined
+
 ## v1.0.2
 * Added: DeviceUtils.IS_ANDROID
 * Added: DeviceUtils.SCREEN_PIXEL_RATIO
