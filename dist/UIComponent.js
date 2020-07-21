@@ -72,9 +72,13 @@ var UIComponent = /** @class */ (function () {
     });
     Object.defineProperty(UIComponent.prototype, "interactive", {
         get: function () {
+            if (!this.view)
+                return false;
             return this._view.style.pointerEvents != "none";
         },
         set: function (value) {
+            if (!this.view)
+                return;
             this._view.style.pointerEvents = value ? "auto" : "none";
             if (DeviceUtils_1.DeviceUtils.IS_IE) {
                 if (value) {
