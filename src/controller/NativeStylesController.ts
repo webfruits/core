@@ -99,14 +99,17 @@ export class NativeStylesController {
             mergedStyles = Object.assign(mergedStyles, styleLevel.styles);
         });
         for (let propertyName in mergedStyles) {
+            let success = true;
             if (mergedStyles.hasOwnProperty(propertyName)) {
                 let value = mergedStyles[propertyName];
                 if (this.isTransformProperty(propertyName)) {
                     this.applyTransformProperties(propertyName, value);
                 } else {
-                    this.applyNativeProperties(propertyName, value);
+                    success = this.applyNativeProperties(propertyName, value);
                 }
-                this.warnIfStylesWillBeIgnored(propertyName, value);
+                if (success) {
+                    this.warnIfStylesWillBeIgnored(propertyName, value);
+                }
             }
         }
     }
@@ -223,7 +226,7 @@ export class NativeStylesController {
      * Private Methodes
      *****************************************************************/
 
-    private applyNativeProperties(propertyName: string, value: number | string | object) {
+    private applyNativeProperties(propertyName: string, value: number | string | object): boolean {
         switch (typeof value) {
             case "number":
                 if (propertyName.toLowerCase().indexOf("color") != -1) {
@@ -236,13 +239,14 @@ export class NativeStylesController {
                 } else {
                     this._element.style[propertyName] = value + "px";
                 }
-                break;
+                return true;
             case "string":
                 this._element.style[propertyName] = value;
-                break;
+               return true;
             case "undefined":
             case "object":
                 this._element.style.removeProperty(propertyName);
+                return false;
         }
     }
 
