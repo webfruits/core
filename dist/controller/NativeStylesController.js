@@ -52,15 +52,18 @@ var NativeStylesController = /** @class */ (function () {
             mergedStyles = Object.assign(mergedStyles, styleLevel.styles);
         });
         for (var propertyName in mergedStyles) {
+            var success = true;
             if (mergedStyles.hasOwnProperty(propertyName)) {
                 var value = mergedStyles[propertyName];
                 if (this.isTransformProperty(propertyName)) {
                     this.applyTransformProperties(propertyName, value);
                 }
                 else {
-                    this.applyNativeProperties(propertyName, value);
+                    success = this.applyNativeProperties(propertyName, value);
                 }
-                this.warnIfStylesWillBeIgnored(propertyName, value);
+                if (success) {
+                    this.warnIfStylesWillBeIgnored(propertyName, value);
+                }
             }
         }
     };
@@ -223,13 +226,14 @@ var NativeStylesController = /** @class */ (function () {
                 else {
                     this._element.style[propertyName] = value + "px";
                 }
-                break;
+                return true;
             case "string":
                 this._element.style[propertyName] = value;
-                break;
+                return true;
             case "undefined":
             case "object":
                 this._element.style.removeProperty(propertyName);
+                return false;
         }
     };
     NativeStylesController.prototype.applyTransformProperties = function (propertyName, value) {

@@ -78,10 +78,12 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
     }
 
     get interactive(): boolean {
+        if (!this.view) return false;
         return this._view.style.pointerEvents != "none";
     }
 
     set interactive(value: boolean) {
+        if (!this.view) return;
         this._view.style.pointerEvents = value ? "auto" : "none";
         if (DeviceUtils.IS_IE) {
             if (value) {
