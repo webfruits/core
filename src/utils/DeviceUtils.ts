@@ -18,6 +18,10 @@ export class DeviceUtils {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window['MSStream'];
     }
 
+    public static get IS_IPAD_OS(): boolean {
+        return DeviceUtils.IS_IOS || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+    }
+
     public static get IS_ANDROID(): boolean {
         return /Android/.test(navigator.userAgent);
     }
