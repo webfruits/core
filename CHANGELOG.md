@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v1.0.5
+* Added: missing build for 1.0.4
+
 ## v1.0.4
 * Added: DeviceUtils.IS_IPAD_OS
 
