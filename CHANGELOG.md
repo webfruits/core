@@ -2,6 +2,9 @@
 
 #Changelog
 
+## v1.0.4
+* Added: DeviceUtils.IS_IPAD_OS
+
 ## v1.0.3
 * Fixed: NativeStylesController warning on ignored inline properties
 * Fixed: Error on UiComponent.interactive if view is undefined
