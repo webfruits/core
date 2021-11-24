@@ -29,6 +29,13 @@ var DeviceUtils = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(DeviceUtils, "IS_IPAD_OS", {
+        get: function () {
+            return DeviceUtils.IS_IOS || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(DeviceUtils, "IS_ANDROID", {
         get: function () {
             return /Android/.test(navigator.userAgent);

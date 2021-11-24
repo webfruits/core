@@ -7,6 +7,7 @@ export declare class DeviceUtils {
     static get SCREEN_PIXEL_RATIO(): number;
     static get HAS_TOUCH_SCREEN(): boolean;
     static get IS_IOS(): boolean;
+    static get IS_IPAD_OS(): boolean;
     static get IS_ANDROID(): boolean;
     static get IS_MOBILE(): boolean;
     static get IS_IE(): boolean;
