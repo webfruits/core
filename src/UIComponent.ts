@@ -123,7 +123,7 @@ export class UIComponent<T extends HTMLElement = HTMLElement> {
         });
         this._nativeViewEvents.destroy();
         this._nativeWindowEvents.destroy();
-        this._domObserver.destroy();
+        this._domObserver?.destroy();
         if (this.view) {
             this._view.remove();
             this._view = null;

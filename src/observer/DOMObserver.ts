@@ -46,6 +46,7 @@ export class DOMObserver {
     }
 
     public destroy() {
+        this.stop();
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
     }
