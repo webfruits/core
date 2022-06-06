@@ -2,6 +2,10 @@
 
 #Changelog
 
+## v1.0.6
+* Fixed: `UIComponent` throws error on destroy, if `DOMObserver` was disabled
+* Fixed: `DOMObserver` keeps in memory after destroy
+
 ## v1.0.5
 * Added: missing build for 1.0.4
 

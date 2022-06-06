@@ -106,6 +106,7 @@ var UIComponent = /** @class */ (function () {
     UIComponent.prototype.destroy = function (recursivly, recursiveDelayInMS) {
         if (recursivly === void 0) { recursivly = true; }
         if (recursiveDelayInMS === void 0) { recursiveDelayInMS = 0; }
+        var _a;
         if (recursivly) {
             this.children.forEach(function (child, i) {
                 setTimeout(function () {
@@ -120,7 +121,7 @@ var UIComponent = /** @class */ (function () {
         });
         this._nativeViewEvents.destroy();
         this._nativeWindowEvents.destroy();
-        this._domObserver.destroy();
+        (_a = this._domObserver) === null || _a === void 0 ? void 0 : _a.destroy();
         if (this.view) {
             this._view.remove();
             this._view = null;

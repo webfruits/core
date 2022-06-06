@@ -37,6 +37,7 @@ var DOMObserver = /** @class */ (function () {
         this._mutationObserver = null;
     };
     DOMObserver.prototype.destroy = function () {
+        this.stop();
         this.onAddedToStageSignal.removeAll();
         this.onRemovedFromStageSignal.removeAll();
     };
